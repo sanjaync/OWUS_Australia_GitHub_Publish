@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[a3paper, landscape, margin=0.5in]{geometry}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+
+\title{\Huge\textbf{Ensemble PET vs Priestley-Taylor Baseline: Visual Comparison}}
+\author{\Large OzFlux Data Analysis}
+\date{\Large \today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Overview}
+This document provides a side-by-side visual comparison of the 17-site curated paper figures between the baseline Priestley-Taylor (PT) approach (Left) and the new Ensemble PET methodology (Right).
+
+\newpage
+\subsection*{Figure 4: All Metrics Scatter Comparison}
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_agent_3_scientific/FINAL_PAPER_BUNDLE/01_Main_Paper_Figures/4_results_comparison_metrics.png}
+        \caption*{\Large Baseline PT (17 Sites)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_ensemble_top5/FINAL_PAPER_BUNDLE_ENSEMBLE/01_Main_Paper_Figures/4_results_comparison_metrics.png}
+        \caption*{\Large Ensemble PET (17 Sites)}
+    \end{subfigure}
+\end{figure}
+
+\newpage
+\subsection*{Figure 6: Soil Moisture Goodness-of-Fit}
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_agent_3_scientific/FINAL_PAPER_BUNDLE/01_Main_Paper_Figures/4_sm_gof.png}
+        \caption*{\Large Baseline PT}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_ensemble_top5/FINAL_PAPER_BUNDLE_ENSEMBLE/01_Main_Paper_Figures/4_sm_gof.png}
+        \caption*{\Large Ensemble PET}
+    \end{subfigure}
+\end{figure}
+
+\newpage
+\subsection*{Figure 7: Flux Scatter (GPP \& ET)}
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_agent_3_scientific/FINAL_PAPER_BUNDLE/01_Main_Paper_Figures/5_flux_scatter.png}
+        \caption*{\Large Baseline PT}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_ensemble_top5/FINAL_PAPER_BUNDLE_ENSEMBLE/01_Main_Paper_Figures/5_flux_scatter.png}
+        \caption*{\Large Ensemble PET}
+    \end{subfigure}
+\end{figure}
+
+\newpage
+\subsection*{Figure 8: Budyko Aridity}
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_agent_3_scientific/FINAL_PAPER_BUNDLE/01_Main_Paper_Figures/budyko_f.png}
+        \caption*{\Large Baseline PT}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_ensemble_top5/FINAL_PAPER_BUNDLE_ENSEMBLE/01_Main_Paper_Figures/budyko_f.png}
+        \caption*{\Large Ensemble PET}
+    \end{subfigure}
+\end{figure}
+
+\newpage
+\subsection*{Figure 9: Budyko Sigma}
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_agent_3_scientific/FINAL_PAPER_BUNDLE/01_Main_Paper_Figures/budyko_s.png}
+        \caption*{\Large Baseline PT}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_ensemble_top5/FINAL_PAPER_BUNDLE_ENSEMBLE/01_Main_Paper_Figures/budyko_s.png}
+        \caption*{\Large Ensemble PET}
+    \end{subfigure}
+\end{figure}
+
+\newpage
+\subsection*{SI Figure: ET Partitioning}
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_agent_3_scientific/FINAL_PAPER_BUNDLE/01_Main_Paper_Figures/SI_ET_partitioning.png}
+        \caption*{\Large Baseline PT}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_ensemble_top5/FINAL_PAPER_BUNDLE_ENSEMBLE/01_Main_Paper_Figures/SI_ET_partitioning.png}
+        \caption*{\Large Ensemble PET}
+    \end{subfigure}
+\end{figure}
+
+\newpage
+\subsection*{SI Figure: Pi\_F vs Pi\_R Scatter}
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_agent_3_scientific/FINAL_PAPER_BUNDLE/01_Main_Paper_Figures/SI_piRpiF.png}
+        \caption*{\Large Baseline PT}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_ensemble_top5/FINAL_PAPER_BUNDLE_ENSEMBLE/01_Main_Paper_Figures/SI_piRpiF.png}
+        \caption*{\Large Ensemble PET}
+    \end{subfigure}
+\end{figure}
+
+\end{document}

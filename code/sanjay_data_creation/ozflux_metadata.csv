@@ -1,0 +1,35 @@
+siteID,original_site,lat,lon,Vegetation Type,Soil Type,Altitude_m,Tower_Height_m,Canopy_Height_m,flux_data_starts,flux_data_ends
+AU-Dig,DigbyPlantation,-37.88269,141.61647,Eucalyptus globulus (blue gum),,140.0,14.5,6.0,2018-01-01 00:30:00,2021-07-07 12:00:00
+AU-Gat,GatumPasture,-37.39004,141.9609,Phalaris and Subterranean Clover,,254.0,2.9,0.05,2015-02-09 00:30:00,2021-12-31 23:30:00
+AU-Otw,Otway,-38.525,142.81,"Pasture, grazed",,54.0,9.0,0.1,2007-08-11 00:00:00,2011-01-01 00:00:00
+AU-SiP,SilverPlains,-42.09056,147.08749,Species rich highland grassland/sedgeland,Organosol on underlying dolerite geology,860.0,2.5,0.1,2019-12-05 10:00:00,2024-12-31 23:30:00
+AU-Eme,Emerald,-23.85872,148.47459,Mallee and crop,,,6.7,0.4,2011-06-10 00:30:00,2013-12-31 23:30:00
+AU-Alp,AlpinePeatland,-36.86222,147.32083,,,1765.0,2.2,0.3,2017-04-12 18:30:00,2022-06-20 23:30:00
+AU-Rig,RiggsCreek,-36.656,145.576,Pasture,,152.0,5.0,0.4,2011-01-01 00:30:00,2017-07-12 17:30:00
+AU-YarC,YarramundiControl,-33.61347,150.73486,"pasture, unirrigated",,20.0,2.0,0.5,2019-10-22 15:30:00,2025-01-01 00:00:00
+AU-YarI,YarramundiIrrigated,-33.62081,150.76329,"pasture, irrigated",,20.0,2.0,0.5,2019-10-15 09:30:00,2024-12-29 12:00:00
+AU-Ync,Yanco,-34.9878,146.2908,Pasture,"sandy loams, scattered clays, red brown earths, deep sands",128.0,20.0,0.5,2012-10-24 14:00:00,2025-01-28 03:00:00
+AU-DaP,DalyPasture,-14.0633,131.3181,Tropical improved pasture,Red Kandosol,,5.0,0.5,2008-01-01 00:00:00,2013-09-08 13:30:00
+AU-Fog,FoggDam,-12.5452,131.30721,Ephemeral tropical wetland,rich organic,,5.0,0.5,2006-02-07 00:00:00,2008-10-31 17:30:00
+AU-Stp,SturtPlains,-17.1507,133.35021,Mitchell Grasslands,red kandasol,,5.0,0.5,2008-08-28 11:00:00,2025-02-02 00:00:00
+AU-Wal,WallabyCreek,-37.4259,145.1878,Mountain Ash,,,110.0,100.0,2005-08-25 12:30:00,2008-12-31 23:30:00
+AU-Col,Collie,-33.42,116.237,Dry schlerophyll woodland,,,35.0,12.0,2017-08-04 00:30:00,2019-11-11 13:30:00
+AU-Boy,Boyagin,-32.47709,116.93856,Dry schlerophyll woodland,,300.0,30.0,13.0,2017-10-20 13:00:00,2025-02-02 00:00:00
+AU-Adr,AdelaideRiver,-13.0769,131.1178,Woody Savanna,red kandasol,,21.0,16.4,2007-10-17 11:30:00,2009-05-24 06:00:00
+AU-DaS,DalyUncleared,-14.1592,131.38811,Woody Savanna,red kandasol,110.0,21.0,16.4,2008-01-01 00:00:00,2025-02-02 00:00:00
+AU-How,HowardSprings,-12.4952,131.15005,Woody savanna,red kandasol,64.0,23.0,16.0,2002-01-01 06:00:00,2025-02-02 00:00:00
+AU-Lit,Litchfield,-13.17904,130.79454,Woody savanna,red kandasol,222.0,30.0,16.0,2015-06-23 13:00:00,2025-01-17 00:00:00
+AU-Gre,GreatWesternWoodlands,-30.1914,120.65416,sparse eucalypt woodland,heavy gravelly red clay,450.0,36.0,18.0,2013-01-01 15:30:00,2024-12-31 23:30:00
+AU-Rgf,Ridgefield,-32.5061,116.96683,Wheat,,330.0,10.0,1.0,2015-03-29 05:00:00,2025-02-02 00:00:00
+AU-Cum,CumberlandPlain,-33.61528,150.72361,Dry sclerophyll forest,,27.0,30.0,24.0,2014-01-01 00:30:00,2025-01-01 00:00:00
+AU-Ctr,CapeTribulation,-16.10322,145.44692,lowland complex mesophyll vine forest,"Acidic, Dystrophic, Brown Dermosol",66.0,45.0,25.0,2010-01-01 00:00:00,2018-11-02 12:00:00
+AU-Cow,CowBay,-16.23819,145.42716,lowland complex mesophyll vine forest,red clay loam podzolic soils,86.0,35.0,26.0,2009-01-01 09:00:00,2025-02-02 00:00:00
+AU-Whr,Whroo,-36.6732,145.0294,Dry schlerophyll woodland,,,35.0,28.0,2011-12-01 13:30:00,2023-12-31 23:30:00
+AU-Rob,RobsonCreek,-17.11747,145.63014,"Regional Ecosystem (RE) 7.3.36a, complex mesophyll vine forest","Acidic, Dystrophic, Brown Dermosol",710.0,40.0,28.0,2013-08-01 17:30:00,2025-02-02 00:00:00
+AU-Tum,Tumbarumba,-35.6566,148.15159,wet sclerophyll forest,Alfisol,,70.0,40.0,2002-01-07 16:00:00,2022-12-03 18:00:00
+AU-Lox,Loxton,-34.47035,140.65512,Almond orchard,"loamy sand (0 - 50cm), sandy loam (50 - 85cm), sandy clay loam (85 - 170cm)",40.0,10.0,5.5,2008-08-19 17:00:00,2009-06-09 10:30:00
+AU-War,Warra,-43.09502,146.65452,Eucalyptus obliqua tall forest,Kurosolic Redoxic Hydrosol,108.0,80.0,55.0,2013-03-05 15:00:00,2021-09-21 12:00:00
+AU-ASM,AliceSpringsMulga,-22.283,133.24899,Canopy + three types of understorey (vegetation1-4),"red kandosol, sandy loam",600.0,13.7,6.5,2010-09-03 00:00:00,2025-01-28 10:00:00
+AU-TTE,TiTreeEast,-22.287,133.64,Canopy + three types of understorey (vegetation1-4),"red kandosol, sandy loam",600.0,13.7,6.5,2012-07-18 00:00:00,2022-01-17 23:30:00
+AU-Gin,Gingin,-31.37635,115.71377,Banksia woodland,"Podosol, Gutless sand",46.8,15.0,6.8,2011-10-13 14:00:00,2024-12-31 23:30:00
+AU-RDF,RedDirtMelonFarm,-14.56364,132.47757,Woody savannah then cleared,red kandasol,,21.0,6.0,2011-09-23 09:00:00,2013-07-21 23:30:00

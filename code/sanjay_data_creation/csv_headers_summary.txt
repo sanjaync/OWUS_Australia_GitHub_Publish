@@ -1,0 +1,27 @@
+ozflux_Köppen_climate_classification.csv
+siteID,original_site,lat,lon,KG_Code,KG_Label
+--------------------------------------------------
+ozflux_metadata.csv
+siteID,original_site,lat,lon,Vegetation Type,Soil Type,Altitude_m,Tower_Height_m,Canopy_Height_m,flux_data_starts,flux_data_ends
+--------------------------------------------------
+ozflux_modis_climatology.csv
+siteID,original_site,lat,lon,lai_fpar_file_path
+--------------------------------------------------
+ozflux_modis_daily.csv
+siteID,original_site,lat,lon,lai_fpar_file_path
+--------------------------------------------------
+ozflux_modis_igbp_pft.csv
+siteID,original_site,lat,lon,modis_IGBP_code,modis_IGBP,modis_PFT_code,modis_PFT
+--------------------------------------------------
+ozflux_rootdepth_paper.csv
+siteID,original_site,lat,lon,root_depth_from_paper
+--------------------------------------------------
+ozflux_soil_texture_soil_sensor.csv
+siteID,original_site,lat,lon,soil_tex_id,Soil_TEX,swc_i,Zm
+--------------------------------------------------
+ozflux_vegetation_fraction.csv
+siteID,original_site,lat,lon,flux_data_starts,flux_data_ends,Percent_NonTree_Vegetation,Percent_NonVegetated,Percent_Tree_Cover
+--------------------------------------------------
+site_paths.csv
+siteID,original_site,lat,lon,nc_file_path
+--------------------------------------------------

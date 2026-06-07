@@ -1,0 +1,138 @@
+Sp,ID,DT,leaf_WP (MPa),Predawn (PD) or Midday (MD),Season
+Argyrodendron peralatum,129,21/03/2020 05:30,-0.366666667,PD,wet
+Argyrodendron peralatum,135,21/03/2020 05:30,-0.283333333,PD,wet
+Argyrodendron peralatum,531,20/03/2020 06:30,-0.283333333,PD,wet
+Argyrodendron peralatum,Ap,23/03/2020 07:00,-0.333333333,PD,wet
+Cardwellia sublimis,84,22/03/2020 06:30,-0.05,PD,wet
+Cardwellia sublimis,287,23/03/2020 06:00,-0.05,PD,wet
+Cryptocarya mackinnoniana,155,21/03/2020 05:30,-0.066666667,PD,wet
+Cryptocarya mackinnoniana,149,21/03/2020 06:00,-0.1,PD,wet
+Dysoxylum papuanum,158,21/03/2020 05:30,-0.116666667,PD,wet
+Dysoxylum papuanum,48,22/03/2020 07:00,-0.05,PD,wet
+Dysoxylum papuanum,495,22/03/2020 05:30,-0.1,PD,wet
+Dysoxylum papuanum,72,22/03/2020 06:00,-0.116666667,PD,wet
+Endiandra microneura,180,21/03/2020 07:00,-0.1,PD,wet
+Endiandra microneura,706,23/03/2020 06:30,-0.183333333,PD,wet
+Endiandra microneura,703,23/03/2020 06:00,-0.1,PD,wet
+Litsea leefeana,165,21/03/2020 06:30,-0.133333333,PD,wet
+Litsea leefeana,577,20/03/2020 05:30,-0.15,PD,wet
+Litsea leefeana,8,22/03/2020 06:30,-0.1,PD,wet
+Litsea leefeana,660,23/03/2020 06:30,-0.116666667,PD,wet
+Myristica globosa subsp. muelleri,550,20/03/2020 06:30,-0.283333333,PD,wet
+Myristica globosa subsp. muelleri,584,20/03/2020 05:30,-0.166666667,PD,wet
+Myristica globosa subsp. muelleri,579,20/03/2020 06:00,-0.4,PD,wet
+Myristica globosa subsp. muelleri,566,20/03/2020 05:00,-0.266666667,PD,wet
+Argyrodendron peralatum,129,21/03/2020 14:00,-1.783333333,MD,wet
+Argyrodendron peralatum,135,21/03/2020 13:30,-1.2,MD,wet
+Argyrodendron peralatum,Ap,23/03/2020 12:30,-0.666666667,MD,wet
+Cardwellia sublimis,84,22/03/2020 13:00,-0.233333333,MD,wet
+Cardwellia sublimis,287,23/03/2020 13:00,-1.1,MD,wet
+Cryptocarya mackinnoniana,155,21/03/2020 13:30,-0.616666667,MD,wet
+Cryptocarya mackinnoniana,149,21/03/2020 13:30,-0.933333333,MD,wet
+Dysoxylum papuanum,158,21/03/2020 13:30,-1.583333333,MD,wet
+Dysoxylum papuanum,48,22/03/2020 14:00,-0.4,MD,wet
+Dysoxylum papuanum,495,22/03/2020 13:30,-0.233333333,MD,wet
+Dysoxylum papuanum,72,22/03/2020 13:00,-0.283333333,MD,wet
+Endiandra microneura,180,21/03/2020 12:30,-1,MD,wet
+Endiandra microneura,706,23/03/2020 13:30,-0.516666667,MD,wet
+Endiandra microneura,703,23/03/2020 13:30,-0.916666667,MD,wet
+Litsea leefeana,165,21/03/2020 13:00,-0.883333333,MD,wet
+Litsea leefeana,577,20/03/2020 13:30,-1.166666667,MD,wet
+Litsea leefeana,8,22/03/2020 12:30,-0.216666667,MD,wet
+Litsea leefeana,660,23/03/2020 13:00,-0.6,MD,wet
+Myristica globosa subsp. muelleri,550,20/03/2020 12:30,-0.266666667,MD,wet
+Myristica globosa subsp. muelleri,584,20/03/2020 13:30,-0.45,MD,wet
+Myristica globosa subsp. muelleri,579,20/03/2020 12:30,-0.266666667,MD,wet
+Myristica globosa subsp. muelleri,566,20/03/2020 13:00,-0.833333333,MD,wet
+Argyrodendron peralatum,129,23/09/2019 08:00,-0.093333333,PD,mid
+Argyrodendron peralatum,135,22/09/2019 07:00,-0.303333333,PD,mid
+Argyrodendron peralatum,531,23/09/2019 07:00,-0.313333333,PD,mid
+Argyrodendron peralatum,Ap,24/09/2019 06:30,-0.496666667,PD,mid
+Cardwellia sublimis,84,24/09/2019 06:00,-0.16,PD,mid
+Cardwellia sublimis,287,22/09/2019 05:30,-0.436666667,PD,mid
+Cryptocarya mackinnoniana,149,23/09/2019 09:00,-0.133333333,PD,mid
+Cryptocarya mackinnoniana,155,22/09/2019 06:00,-0.213333333,PD,mid
+Dysoxylum papuanum,48,24/09/2019 05:00,-0.226666667,PD,mid
+Dysoxylum papuanum,72,24/09/2019 05:30,-0.253333333,PD,mid
+Dysoxylum papuanum,158,22/09/2019 07:00,-0.25,PD,mid
+Dysoxylum papuanum,495,24/09/2019 05:00,-0.106666667,PD,mid
+Endiandra microneura,180,22/09/2019 06:00,-0.32,PD,mid
+Endiandra microneura,703,22/09/2019 05:30,-0.313333333,PD,mid
+Endiandra microneura,706,22/09/2019 06:00,-0.466666667,PD,mid
+Litsea leefeana,8,24/09/2019 06:00,-0.473333333,PD,mid
+Litsea leefeana,165,23/09/2019 08:00,-0.2,PD,mid
+Litsea leefeana,577,23/09/2019 06:30,-0.126666667,PD,mid
+Litsea leefeana,660,22/09/2019 06:00,-0.416666667,PD,mid
+Myristica globosa subsp. muelleri,550,23/09/2019 07:30,-0.226666667,PD,mid
+Myristica globosa subsp. muelleri,566,23/09/2019 07:00,-0.183333333,PD,mid
+Myristica globosa subsp. muelleri,579,23/09/2019 07:00,-0.143333333,PD,mid
+Myristica globosa subsp. muelleri,584,23/09/2019 06:30,-0.15,PD,mid
+Argyrodendron peralatum,129,23/09/2019 12:00,-0.996666667,MD,mid
+Argyrodendron peralatum,135,22/09/2019 12:30,-1.586666667,MD,mid
+Argyrodendron peralatum,531,23/09/2019 13:00,-1.5,MD,mid
+Argyrodendron peralatum,Ap,24/09/2019 13:30,-1.653333333,MD,mid
+Cardwellia sublimis,84,24/09/2019 13:00,-1.37,MD,mid
+Cardwellia sublimis,287,22/09/2019 13:30,-1.016666667,MD,mid
+Cryptocarya mackinnoniana,149,23/09/2019 12:00,-0.4,MD,mid
+Cryptocarya mackinnoniana,155,22/09/2019 12:30,-1.1,MD,mid
+Dysoxylum papuanum,48,24/09/2019 12:30,-1.216666667,MD,mid
+Dysoxylum papuanum,72,24/09/2019 12:30,-0.47,MD,mid
+Dysoxylum papuanum,158,22/09/2019 12:00,-0.8,MD,mid
+Dysoxylum papuanum,495,24/09/2019 13:00,-0.49,MD,mid
+Endiandra microneura,180,22/09/2019 13:00,-1.816666667,MD,mid
+Endiandra microneura,703,22/09/2019 13:00,-1.816666667,MD,mid
+Endiandra microneura,706,22/09/2019 13:00,-0.87,MD,mid
+Litsea leefeana,8,24/09/2019 12:30,-1.506666667,MD,mid
+Litsea leefeana,165,23/09/2019 13:00,-1.5,MD,mid
+Litsea leefeana,577,23/09/2019 13:30,-0.943333333,MD,mid
+Litsea leefeana,660,22/09/2019 13:00,-1.19,MD,mid
+Myristica globosa subsp. muelleri,550,23/09/2019 13:00,-0.186666667,MD,mid
+Myristica globosa subsp. muelleri,566,23/09/2019 13:00,-0.2,MD,mid
+Myristica globosa subsp. muelleri,579,23/09/2019 13:30,-0.32,MD,mid
+Myristica globosa subsp. muelleri,584,23/09/2019 13:30,-0.206666667,MD,mid
+Argyrodendron peralatum,129,12/11/2019 05:30,-1.143333333,PD,dry
+Argyrodendron peralatum,135,12/11/2019 04:30,-0.913333333,PD,dry
+Argyrodendron peralatum,531,13/11/2019 06:00,-0.993333333,PD,dry
+Argyrodendron peralatum,Ap,15/11/2019 05:00,-0.793333333,PD,dry
+Cardwellia sublimis,84,14/11/2019 05:00,-0.17,PD,dry
+Cardwellia sublimis,287,15/11/2019 05:30,-0.323333333,PD,dry
+Cryptocarya mackinnoniana,155,12/11/2019 04:30,-0.663333333,PD,dry
+Cryptocarya mackinnoniana,149,13/11/2019 05:00,-0.496666667,PD,dry
+Dysoxylum papuanum,158,12/11/2019 04:30,-0.993333333,PD,dry
+Dysoxylum papuanum,48,14/11/2019 05:30,-0.236666667,PD,dry
+Dysoxylum papuanum,495,14/11/2019 05:30,-0.463333333,PD,dry
+Dysoxylum papuanum,72,14/11/2019 05:30,-0.543333333,PD,dry
+Endiandra microneura,180,12/11/2019 05:00,-0.616666667,PD,dry
+Endiandra microneura,706,15/11/2019 05:30,-0.29,PD,dry
+Endiandra microneura,703,15/11/2019 05:30,-0.48,PD,dry
+Litsea leefeana,165,12/11/2019 06:00,-0.833333333,PD,dry
+Litsea leefeana,577,13/11/2019 05:00,-0.593333333,PD,dry
+Litsea leefeana,8,14/11/2019 05:00,-0.406666667,PD,dry
+Litsea leefeana,660,15/11/2019 06:00,-0.603333333,PD,dry
+Myristica globosa subsp. muelleri,550,13/11/2019 06:00,-0.533333333,PD,dry
+Myristica globosa subsp. muelleri,584,13/11/2019 05:00,-0.67,PD,dry
+Myristica globosa subsp. muelleri,579,13/11/2019 06:00,-0.613333333,PD,dry
+Myristica globosa subsp. muelleri,566,13/11/2019 05:30,-0.746666667,PD,dry
+Argyrodendron peralatum,129,12/11/2019 12:30,-2.946666667,MD,dry
+Argyrodendron peralatum,135,12/11/2019 13:00,-2.416666667,MD,dry
+Argyrodendron peralatum,531,13/11/2019 12:00,-2.093333333,MD,dry
+Argyrodendron peralatum,Ap,15/11/2019 13:00,-2.023333333,MD,dry
+Cardwellia sublimis,84,14/11/2019 12:30,-1.686666667,MD,dry
+Cardwellia sublimis,287,15/11/2019 12:30,-1.566666667,MD,dry
+Cryptocarya mackinnoniana,155,12/11/2019 13:00,-2.166666667,MD,dry
+Cryptocarya mackinnoniana,149,13/11/2019 13:30,-0.93,MD,dry
+Dysoxylum papuanum,158,12/11/2019 13:00,-1.88,MD,dry
+Dysoxylum papuanum,48,14/11/2019 12:00,-2,MD,dry
+Dysoxylum papuanum,495,14/11/2019 12:00,-1.77,MD,dry
+Dysoxylum papuanum,72,14/11/2019 12:30,-1.823333333,MD,dry
+Endiandra microneura,180,12/11/2019 12:30,-1.903333333,MD,dry
+Endiandra microneura,706,15/11/2019 12:30,-1.67,MD,dry
+Endiandra microneura,703,15/11/2019 13:00,-1.046666667,MD,dry
+Litsea leefeana,165,12/11/2019 12:00,-1.633333333,MD,dry
+Litsea leefeana,577,13/11/2019 13:30,-1.433333333,MD,dry
+Litsea leefeana,8,14/11/2019 13:00,-1.606666667,MD,dry
+Litsea leefeana,660,15/11/2019 12:00,-1.356666667,MD,dry
+Myristica globosa subsp. muelleri,550,13/11/2019 12:30,-1.08,MD,dry
+Myristica globosa subsp. muelleri,584,13/11/2019 13:30,-1.003333333,MD,dry
+Myristica globosa subsp. muelleri,579,13/11/2019 12:30,-1.793333333,MD,dry
+Myristica globosa subsp. muelleri,566,13/11/2019 13:00,-1.016666667,MD,dry

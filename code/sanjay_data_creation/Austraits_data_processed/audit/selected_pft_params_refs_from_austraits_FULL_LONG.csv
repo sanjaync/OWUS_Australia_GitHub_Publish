@@ -1,0 +1,30 @@
+PFT,trait_name,organ_simple,unit,n,value_median,value_q25,value_q75,owus_param,which,proxy_flag,proxy_reason,units
+BF-te,leaf_stomatal_conductance_per_area_ambient,leaf,mmol{H2O}/m2/s,174,62.676,24.437437467524997,208,g_max,secondary,TRUE,Amax approximates physiological maximum; ambient conductance often used as proxy under field conditions,mmol(H2O)/m2/s
+G-C3,leaf_stomatal_conductance_per_area_ambient,leaf,mmol{H2O}/m2/s,74,134.4465,40.918499999999995,257.425,g_max,secondary,TRUE,Amax approximates physiological maximum; ambient conductance often used as proxy under field conditions,mmol(H2O)/m2/s
+NF-te,leaf_stomatal_conductance_per_area_ambient,leaf,mmol{H2O}/m2/s,4,263.05,137.9,369.50000000000006,g_max,secondary,TRUE,Amax approximates physiological maximum; ambient conductance often used as proxy under field conditions,mmol(H2O)/m2/s
+BF-te,leaf_stomatal_conductance_per_area_at_Amax,leaf,mmol{H2O}/m2/s,547,90.9,44.5,184.05,g_max,primary,TRUE,Amax approximates physiological maximum; ambient conductance often used as proxy under field conditions,mmol(H2O)/m2/s
+G-C3,leaf_stomatal_conductance_per_area_at_Amax,leaf,mmol{H2O}/m2/s,296,82.92500000000001,41.775,194.1,g_max,primary,TRUE,Amax approximates physiological maximum; ambient conductance often used as proxy under field conditions,mmol(H2O)/m2/s
+G-C4,leaf_stomatal_conductance_per_area_at_Amax,leaf,mmol{H2O}/m2/s,17,31.1,25.3,38,g_max,primary,TRUE,Amax approximates physiological maximum; ambient conductance often used as proxy under field conditions,mmol(H2O)/m2/s
+NF-te,leaf_stomatal_conductance_per_area_at_Amax,leaf,mmol{H2O}/m2/s,39,49.9,25.549999999999997,72.5,g_max,primary,TRUE,Amax approximates physiological maximum; ambient conductance often used as proxy under field conditions,mmol(H2O)/m2/s
+BF-te,leaf_water_potential_50percent_lost_conductivity,leaf,MPa,16,-3.587,-4.625,-2.561,Px50_leaf,primary,FALSE,NA,MPa
+G-C3,leaf_water_potential_50percent_lost_conductivity,leaf,MPa,55,-3.64,-4.545,-3.085,Px50_leaf,primary,FALSE,NA,MPa
+G-C4,leaf_water_potential_50percent_lost_conductivity,leaf,MPa,2,-2.21,-2.384,-2.036,Px50_leaf,primary,FALSE,NA,MPa
+NF-te,leaf_water_potential_50percent_lost_conductivity,leaf,MPa,8,-3.2905,-4.2875,-2.84,Px50_leaf,primary,FALSE,NA,MPa
+BF-te,root_distribution_coefficient,root,{dimensionless},5,0.856,0.852,0.885,root_profile,primary,TRUE,"Statistical depth proxy, not physical roots",{dimensionless}
+G-C3,root_distribution_coefficient,root,{dimensionless},63,0.838,0.8025,0.89,root_profile,primary,TRUE,"Statistical depth proxy, not physical roots",{dimensionless}
+G-C4,root_distribution_coefficient,root,{dimensionless},7,0.88,0.869,0.908,root_profile,primary,TRUE,"Statistical depth proxy, not physical roots",{dimensionless}
+BF-te,root_specific_root_area,root,mm2/mg,7,0.00392056962,0.002840231432,0.0075,RAI,primary,TRUE,RSRA is a geometric proxy for rooting intensity; conversion needed to derive effective RAI (m2/m2),mm2/mg
+G-C3,root_specific_root_area,root,mm2/mg,83,0.01280602941,0.007432990196,0.024,RAI,primary,TRUE,RSRA is a geometric proxy for rooting intensity; conversion needed to derive effective RAI (m2/m2),mm2/mg
+G-C4,root_specific_root_area,root,mm2/mg,12,0.008307597427,0.007,0.0111458238975,RAI,primary,TRUE,RSRA is a geometric proxy for rooting intensity; conversion needed to derive effective RAI (m2/m2),mm2/mg
+BF-te,root_water_potential_50percent_lost_conductivity,root,MPa,1,-6.4,-6.4,-6.4,Px50_root,primary,FALSE,NA,MPa
+G-C3,root_water_potential_50percent_lost_conductivity,root,MPa,1,-4.51,-4.51,-4.51,Px50_root,primary,FALSE,NA,MPa
+NF-te,root_water_potential_50percent_lost_conductivity,root,MPa,1,-8.16,-8.16,-8.16,Px50_root,primary,FALSE,NA,MPa
+BF-te,sapwood_specific_hydraulic_conductivity,stem,kg/m/MPa/s,66,2.31,0.77563457725,4.864247967499999,kl_max,primary,TRUE,Stem conductivity includes bark; sapwood preferred,kg/m/MPa/s
+G-C3,sapwood_specific_hydraulic_conductivity,stem,kg/m/MPa/s,436,2.62,0.6597216035,7.26565220875,kl_max,primary,TRUE,Stem conductivity includes bark; sapwood preferred,kg/m/MPa/s
+G-C4,sapwood_specific_hydraulic_conductivity,stem,kg/m/MPa/s,3,0.62,0.53,1.525,kl_max,primary,TRUE,Stem conductivity includes bark; sapwood preferred,kg/m/MPa/s
+NF-te,sapwood_specific_hydraulic_conductivity,stem,kg/m/MPa/s,16,2.1799999999999997,1.0799999999999998,3.547,kl_max,primary,TRUE,Stem conductivity includes bark; sapwood preferred,kg/m/MPa/s
+BF-te,stem_specific_hydraulic_conductivity,stem,kg/m/MPa/s,60,1.261708803,0.79163502125,3.314681624,kl_max,secondary,TRUE,Stem conductivity includes bark; sapwood preferred,kg/m/MPa/s
+G-C3,stem_specific_hydraulic_conductivity,stem,kg/m/MPa/s,124,1.471621893,0.81763557775,5.47153247125,kl_max,secondary,TRUE,Stem conductivity includes bark; sapwood preferred,kg/m/MPa/s
+BF-te,stem_water_potential_50percent_lost_conductivity,stem,MPa,58,-1.94888,-2.66687,-1.559065,Px50_stem,primary,FALSE,NA,MPa
+G-C3,stem_water_potential_50percent_lost_conductivity,stem,MPa,82,-1.67974,-3.1975,-1.1125,Px50_stem,primary,FALSE,NA,MPa
+NF-te,stem_water_potential_50percent_lost_conductivity,stem,MPa,9,-8.46,-8.51,-8.17,Px50_stem,primary,FALSE,NA,MPa

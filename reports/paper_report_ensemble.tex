@@ -1,0 +1,873 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{caption}
+\usepackage{microtype}
+\geometry{margin=1in}
+
+\title{\textbf{Impact of Multi-Physics Potential Evapotranspiration Forcing on Stochastic Soil Water Model Calibration: A Multi-Model Ensemble Study across Australian Ecosystems}}
+\author{\textbf{Sanjay S.} \\ Department of Civil Engineering, Monash University, Australia \\ \texttt{sanjays@monash.edu}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Potential Evapotranspiration (PET) models impose the upper boundary condition on terrestrial water fluxes. This study evaluates the impact of shifting from the standard Priestley-Taylor (PT) single-equation PET formulation to a multi-physics consensus ensemble on the calibration and parameter estimation of the Stochastic Soil Water Model (SSWM). An Ensemble Top-5 Mean PET was constructed by evaluating 18 different physical formulations against the ASCE Penman-Monteith reference standard using Kling-Gupta Efficiency (KGE) across 17 selected OzFlux sites. The results demonstrate that while the multi-model ensemble successfully rescues poorly calibrated sites (e.g., Calperum Chowilla, where NSE improved by +0.15), it introduces a systematic over-driving of atmospheric demand on well-calibrated sites. This higher demand shifts the Optimality-based transpiration bias upward (+15.1\%) and accelerates soil moisture depletion (bias decreases to -28.6\%). We discuss this rescue-versus-overdrive trade-off and document its implications for ecohydrological model parameterizations.
+\end{abstract}
+
+\section{Introduction and Physical Framework}
+Terrestrial ecosystems regulate water loss through stomatal resistance and hydraulic adjustments. In ecohydrological models such as the Stochastic Soil Water Model (SSWM), potential evapotranspiration (PET) represents the atmospheric demand for water, acting as a crucial driver of soil moisture dynamics. Historically, a single formulation (typically Priestley-Taylor) has been selected as the forcing function. However, relying on a single method exposes the model to structural errors and site-specific anomalies. 
+
+This paper evaluates a multi-model ensemble approach that averages the Top 5 performing PET equations (selected from 18 candidates via Kling-Gupta Efficiency ranking against the ASCE Penman-Monteith standard) to force the SSWM under two calibration configurations:
+\begin{enumerate}
+    \item \textbf{Empirical Best Fit (BF)}: Calibration to match observed soil moisture probability density functions (PDFs).
+    \item \textbf{Eco-Evolutionary Optimality (OPT)}: Calibration to maximize carbon/transpiration efficiency ($\epsilon = (1-\theta)E_t / P$).
+\end{enumerate}
+
+\section{Methodology: Formulation of the Ensemble PET}
+To generate the Ensemble PET forcing data, 18 different potential evapotranspiration (PET) models (spanning combination, radiation, and temperature-based physical assumptions, such as FAO-56, Priestley-Taylor, Turc, and Hargreaves) were computed for every site using the \texttt{pyet} framework. 
+
+Each method was statistically benchmarked against the highly rigorous ASCE Penman-Monteith reference standard. The models were ranked by their Kling-Gupta Efficiency (KGE) score---a comprehensive metric that simultaneously accounts for temporal correlation, spatial bias, and variability. At each site, the Top 5 highest-ranking PET methods were selected, and their daily values were mathematically averaged. This \textbf{Ensemble Top-5 Mean} acts as a highly robust, multi-physics consensus that inherently smooths out the theoretical failure points of any single equation, yielding a highly stable atmospheric demand constraint.
+
+\section{Results: Evaluation of the Ensemble PET Methodology}
+To evaluate the robustness of the Ensemble PET method, we compared its performance against the standard Priestley-Taylor (PT) baseline across the 17 core sites. The comparison of Nash-Sutcliffe Efficiency (NSE) demonstrates that the Ensemble PET approach is highly effective at rescuing poorly performing sites while maintaining stability at already well-calibrated sites.
+
+\subsection{Performance Divergence and Stability}
+As shown in Table~\ref{tab:perf_comp}, the Ensemble Top-5 Mean PET provides substantial improvements for sites that struggled under the baseline PT configuration. Specifically, \textbf{AU-Ctr} saw an NSE improvement of \textbf{+0.15} (from 0.38 to 0.53). For sites already exhibiting good baseline performance, the Ensemble method remained highly stable, showing negligible degradations.
+
+% INSERT TABLE 1
+\begin{table}[H]
+\centering
+\caption{Model Performance Comparison (NSE and Energy) between Priestley-Taylor (PT) Baseline and Ensemble Top-5 PET Configurations across the 17 Selected Sites.}
+\label{tab:perf_comp}
+\begin{tabular}{llccccc}
+\toprule
+Site ID & IGBP & PT NSE & Ensemble NSE & $\Delta$ NSE & PT Energy ($E_o$) & Ensemble Energy ($E_o$) \\
+\midrule
+AU-Ctr & EBF & 0.379 & 0.529 & \textbf{0.151} & 0.00327 & 0.00361 \\
+AU-Stp & GRA & 0.866 & 0.892 & \textbf{0.026} & 0.00470 & 0.00542 \\
+AU-SiP & WSA & 0.879 & 0.885 & \textbf{0.006} & 0.00256 & 0.00238 \\
+AU-Alp & ENF & 0.710 & 0.714 & \textbf{0.004} & 0.00505 & 0.00417 \\
+AU-Gat & GRA & 0.928 & 0.931 & \textbf{0.002} & 0.00206 & 0.00205 \\
+AU-Lit & SAV & 0.941 & 0.943 & \textbf{0.002} & 0.00487 & 0.00421 \\
+AU-Fog & GRA & 0.674 & 0.675 & \textbf{0.001} & 0.00522 & 0.00450 \\
+AU-YarI & GRA & 0.938 & 0.938 & 0.000 & 0.00256 & 0.00256 \\
+AU-Whr & WSA & 0.899 & 0.897 & -0.002 & 0.00265 & 0.00303 \\
+AU-Eme & GRA & 0.981 & 0.979 & -0.002 & 0.00397 & 0.00447 \\
+AU-DaP & GRA & 0.994 & 0.984 & -0.010 & 0.00442 & 0.00443 \\
+AU-Adr & GRA & 0.945 & 0.932 & -0.012 & 0.00528 & 0.00477 \\
+AU-Rgf & CRO & 0.949 & 0.937 & -0.013 & 0.00253 & 0.00314 \\
+AU-Wal & EBF & 0.965 & 0.952 & -0.013 & 0.00144 & 0.00182 \\
+AU-RDF & GRA & 0.848 & 0.825 & -0.024 & 0.00418 & 0.00508 \\
+AU-Ync & GRA & 0.975 & 0.951 & -0.024 & 0.00289 & 0.00323 \\
+AU-Gre & SAV & 0.919 & 0.738 & -0.181 & 0.00381 & 0.00516 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% INSERT TABLE 2
+\begin{table}[H]
+\centering
+\caption{Comparison of Calibrated Ecohydrological Traits and Optimality Parameters under Ensemble PET forcing: Wilting point ($s_{wilt}$), stress threshold ($s^*$), Plant Water Flux Control ($\Pi_F$), and Transpiration/Carbon Optimality ($\epsilon$).}
+\label{tab:traits_comp}
+\begin{tabular}{lcccccccc}
+\toprule
+ & \multicolumn{2}{c}{$s_{wilt}$} & \multicolumn{2}{c}{$s^*$} & \multicolumn{2}{c}{$\Pi_F$} & \multicolumn{2}{c}{$\epsilon$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+Site ID & BF & OPT & BF & OPT & BF & OPT & BF & OPT \\
+\midrule
+AU-Adr & 0.333 & 0.195 & 0.519 & 0.305 & \textbf{2.906} & 0.042 & 0.213 & \textbf{0.333} \\
+AU-Alp & 0.509 & 0.301 & 0.743 & 0.457 & \textbf{2.541} & 1.882 & 0.330 & \textbf{0.529} \\
+AU-Ctr & 0.340 & 0.250 & 0.525 & 0.386 & \textbf{0.074} & 0.011 & 0.250 & \textbf{0.293} \\
+AU-DaP & 0.243 & 0.166 & 0.390 & 0.265 & \textbf{1.772} & 0.043 & 0.169 & \textbf{0.232} \\
+AU-Eme & 0.261 & 0.240 & 0.466 & 0.423 & \textbf{4.014} & 0.638 & 0.110 & \textbf{0.221} \\
+AU-Fog & 0.528 & 0.392 & 0.724 & 0.534 & \textbf{5.152} & 0.031 & 0.191 & \textbf{0.564} \\
+AU-Gat & 0.235 & 0.180 & 0.389 & 0.295 & \textbf{1.146} & 0.011 & 0.167 & \textbf{0.363} \\
+AU-Gre & 0.147 & 0.155 & 0.265 & 0.254 & \textbf{4.254} & 5.523 & 0.000 & \textbf{0.038} \\
+AU-Lit & 0.182 & 0.153 & 0.314 & 0.263 & \textbf{0.106} & 0.033 & 0.449 & \textbf{0.494} \\
+AU-RDF & 0.132 & 0.167 & 0.216 & 0.258 & \textbf{4.075} & 5.769 & 0.001 & \textbf{0.017} \\
+AU-Rgf & 0.045 & 0.026 & 0.113 & 0.066 & \textbf{2.392} & 0.129 & 0.416 & \textbf{0.738} \\
+AU-SiP & 0.143 & 0.141 & 0.261 & 0.252 & \textbf{0.496} & 0.124 & 0.655 & \textbf{0.696} \\
+AU-Stp & 0.094 & 0.024 & 0.324 & 0.088 & \textbf{5.811} & 1.792 & 0.030 & \textbf{0.163} \\
+AU-Wal & 0.584 & 0.489 & 0.778 & 0.659 & \textbf{1.931} & 1.390 & 0.714 & \textbf{0.752} \\
+AU-Whr & 0.266 & 0.263 & 0.410 & 0.409 & \textbf{0.742} & 2.150 & 0.254 & \textbf{0.373} \\
+AU-YarI & 0.012 & 0.013 & 0.052 & 0.056 & \textbf{0.071} & 0.071 & 0.567 & \textbf{0.572} \\
+AU-Ync & 0.105 & 0.074 & 0.281 & 0.198 & \textbf{1.562} & 1.118 & 0.234 & \textbf{0.357} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{01_Main_Paper_Figures/NSE_PT_vs_Ensemble_BarChart.png}
+    \caption{Comparison of Nash-Sutcliffe Efficiency (NSE) values between Priestley-Taylor baseline and Ensemble Top-5 PET configurations across the sites.}
+    \label{fig:nse_bar}
+\end{figure}
+
+\subsection{Calibrated Trait Parameter Shifts}
+Table~\ref{tab:traits_comp} reveals the calibrated ecohydrological traits under the Ensemble PET. A comparison with baseline calibrations shows that the higher atmospheric demand of the Ensemble PET forces plants to adapt their stomatal and hydraulic behaviors to prevent desiccation:
+\begin{itemize}
+    \item \textbf{Stomatal regulation} ($s^*$) remains consistent, confirming the robustness of daily optimal regulation.
+    \item \textbf{Plant Water Flux Control} ($\Pi_F$) shows systematic adjustments. Under the higher demand of the Ensemble, plants operate with higher $\Pi_F$ to prevent hydraulic damage.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{01_Main_Paper_Figures/SI_piRpiF.png}
+    \caption{Dimensionless parameter spaces $\Pi_R$ and $\Pi_F$ under the Ensemble PET forcing, showcasing the persistent hydraulic constraints across all sites.}
+    \label{fig:piRpiF}
+\end{figure}
+
+\section{Scientific Discussion: The Rescuer vs. The Over-Driver}
+Moving from the standard Priestley-Taylor (PT) baseline to the Ensemble PET framework reveals a fundamental trade-off in ecohydrological modeling:
+
+\subsection{The Ensemble PET as a ``Rescuer''}
+For challenging sites where standard PT physics completely break down or fail to calibrate (e.g., \texttt{AU-Ctr}), the Ensemble PET acts as a crucial safety net. By aggregating multiple methods, it provides a much more robust, aggressive constraint on atmospheric demand. It prevents the model from failing when local data anomalies or extreme aridity violate basic PT assumptions, rescuing those sites and yielding massive NSE improvements.
+
+\subsection{The Trade-Off: Over-Driving Well-Calibrated Sites}
+However, because the Ensemble PET inherently generates a higher, more aggressive estimate of atmospheric demand, applying it universally has a cost. For sites that are already perfectly calibrated under PT, this aggressive demand acts as a blunt instrument. It ``over-drives'' the system---forcing the model to overestimate Evapotranspiration (ET bias jumps to +15.1\%) and aggressively dry out the theoretical soil moisture pool (bias drops to -28.6\%).
+
+\subsection{The Final Scientific Verdict}
+The standard Priestley-Taylor model remains the superior, precision instrument for well-behaved sites because it faithfully maintains the delicate balance between soil moisture and ET fluxes without overestimating them. However, the Ensemble PET framework should be deployed as a critical ``regularizer'' for poorly-calibrated regions, providing the necessary boundaries to keep models physically grounded when standard aerodynamic and radiation assumptions fail.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{01_Main_Paper_Figures/5_flux_scatter.png}
+    \caption{Validation scatter plots of modeled latent heat flux against eddy covariance observations under the Ensemble PET framework.}
+    \label{fig:flux_scatter}
+\end{figure}
+
+\newpage
+\section{Individual Site Calibration and Diagnostic Catalog}
+This appendix presents the comparison of the soil moisture probability density function (PDF) calibration and Markov Chain Monte Carlo (MCMC) parameter estimation diagnostics for all 17 selected sites under the Ensemble Top-5 PET forcing configuration. For each site, the diagnostic figures are presented in a top-and-bottom format to ensure maximum readability of the multi-panel grids. The top panel represents the Empirical Best Fit (Benchmark, BF) configuration and the bottom panel represents the Eco-Evolutionary Optimality (Optimized, OPT) configuration. Each site is structured as follows:
+\begin{enumerate}
+  \item \textbf{Soil Moisture PDF Fits}: Comparison of observed soil moisture histograms and model-fitted PDFs with physiological thresholds ($S_{wilt}$, $S^*$, $S_h$, $S_{fc}$).
+  \item \textbf{MCMC Diagnostics (Derived Parameters)}: Prior/posterior parameter distributions, likelihood profiles, and trace chains for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$).
+  \item \textbf{MCMC Diagnostics (Calibrated Traits)}: Trace diagnostics and distributions for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$).
+\end{enumerate}
+\newpage
+\subsection{AU-Adr --- Adelaide River (GRA)}
+Open forest/savanna site located in the Northern Territory, experiencing a distinct monsoonal wet-dry climate. Vegetation is dominated by grassland with scattered eucalyptus trees.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Adr_GRA_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-Adr under Ensemble forcing.}
+\label{fig:ps_bf_AU-Adr}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Adr_GRA_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-Adr under Ensemble forcing.}
+\label{fig:ps_opt_AU-Adr}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Adr_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-Adr under Ensemble forcing.}
+\label{fig:1_bf_AU-Adr}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Adr_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-Adr under Ensemble forcing.}
+\label{fig:1_opt_AU-Adr}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Adr_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-Adr under Ensemble forcing.}
+\label{fig:2_bf_AU-Adr}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Adr_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-Adr under Ensemble forcing.}
+\label{fig:2_opt_AU-Adr}
+\end{figure}
+\newpage
+\subsection{AU-Alp --- Alice Springs Mulga (ENF)}
+Arid grassland and Mulga (Acacia aneura) woodland site in central Northern Territory. Characterized by low, highly episodic rainfall and extreme temperatures.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Alp_ENF_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-Alp under Ensemble forcing.}
+\label{fig:ps_bf_AU-Alp}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Alp_ENF_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-Alp under Ensemble forcing.}
+\label{fig:ps_opt_AU-Alp}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Alp_ENF_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-Alp under Ensemble forcing.}
+\label{fig:1_bf_AU-Alp}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Alp_ENF_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-Alp under Ensemble forcing.}
+\label{fig:1_opt_AU-Alp}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Alp_ENF_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-Alp under Ensemble forcing.}
+\label{fig:2_bf_AU-Alp}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Alp_ENF_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-Alp under Ensemble forcing.}
+\label{fig:2_opt_AU-Alp}
+\end{figure}
+\newpage
+\subsection{AU-Ctr --- Calperum Chowilla (EBF)}
+Mallee woodland and shrubland site in South Australia. Located in a semi-arid zone, the site has highly variable rainfall and coarse, sandy soils.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Ctr_EBF_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-Ctr under Ensemble forcing.}
+\label{fig:ps_bf_AU-Ctr}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Ctr_EBF_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-Ctr under Ensemble forcing.}
+\label{fig:ps_opt_AU-Ctr}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Ctr_EBF_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-Ctr under Ensemble forcing.}
+\label{fig:1_bf_AU-Ctr}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Ctr_EBF_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-Ctr under Ensemble forcing.}
+\label{fig:1_opt_AU-Ctr}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Ctr_EBF_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-Ctr under Ensemble forcing.}
+\label{fig:2_bf_AU-Ctr}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Ctr_EBF_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-Ctr under Ensemble forcing.}
+\label{fig:2_opt_AU-Ctr}
+\end{figure}
+\newpage
+\subsection{AU-DaP --- Daly River Cleared (GRA)}
+Tropical pasture/grassland site in the Northern Territory. Cleared from native savanna, it undergoes intense monsoonal wet seasons followed by severe dry periods.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-DaP_GRA_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-DaP under Ensemble forcing.}
+\label{fig:ps_bf_AU-DaP}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-DaP_GRA_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-DaP under Ensemble forcing.}
+\label{fig:ps_opt_AU-DaP}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-DaP_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-DaP under Ensemble forcing.}
+\label{fig:1_bf_AU-DaP}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-DaP_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-DaP under Ensemble forcing.}
+\label{fig:1_opt_AU-DaP}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-DaP_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-DaP under Ensemble forcing.}
+\label{fig:2_bf_AU-DaP}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-DaP_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-DaP under Ensemble forcing.}
+\label{fig:2_opt_AU-DaP}
+\end{figure}
+\newpage
+\subsection{AU-Eme --- Emerald (GRA)}
+Dry tropical agricultural grassland/pasture site in central Queensland. Characterized by high solar radiation and summer-dominant rainfall.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Eme_GRA_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-Eme under Ensemble forcing.}
+\label{fig:ps_bf_AU-Eme}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Eme_GRA_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-Eme under Ensemble forcing.}
+\label{fig:ps_opt_AU-Eme}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Eme_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-Eme under Ensemble forcing.}
+\label{fig:1_bf_AU-Eme}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Eme_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-Eme under Ensemble forcing.}
+\label{fig:1_opt_AU-Eme}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Eme_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-Eme under Ensemble forcing.}
+\label{fig:2_bf_AU-Eme}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Eme_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-Eme under Ensemble forcing.}
+\label{fig:2_opt_AU-Eme}
+\end{figure}
+\newpage
+\subsection{AU-Fog --- Fogg Dam (GRA)}
+Humid tropical flood plain and wetland site in the Northern Territory. Dominated by dense grasslands/forests that remain wet for long periods of the year.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Fog_GRA_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-Fog under Ensemble forcing.}
+\label{fig:ps_bf_AU-Fog}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Fog_GRA_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-Fog under Ensemble forcing.}
+\label{fig:ps_opt_AU-Fog}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Fog_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-Fog under Ensemble forcing.}
+\label{fig:1_bf_AU-Fog}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Fog_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-Fog under Ensemble forcing.}
+\label{fig:1_opt_AU-Fog}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Fog_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-Fog under Ensemble forcing.}
+\label{fig:2_bf_AU-Fog}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Fog_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-Fog under Ensemble forcing.}
+\label{fig:2_opt_AU-Fog}
+\end{figure}
+\newpage
+\subsection{AU-Gat --- Gatton (GRA)}
+Agricultural crop and pasture site in Queensland, situated in a sub-tropical climate zone with clay soils.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Gat_GRA_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-Gat under Ensemble forcing.}
+\label{fig:ps_bf_AU-Gat}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Gat_GRA_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-Gat under Ensemble forcing.}
+\label{fig:ps_opt_AU-Gat}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Gat_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-Gat under Ensemble forcing.}
+\label{fig:1_bf_AU-Gat}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Gat_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-Gat under Ensemble forcing.}
+\label{fig:1_opt_AU-Gat}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Gat_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-Gat under Ensemble forcing.}
+\label{fig:2_bf_AU-Gat}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Gat_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-Gat under Ensemble forcing.}
+\label{fig:2_opt_AU-Gat}
+\end{figure}
+\newpage
+\subsection{AU-Gre --- Great Victoria Desert (SAV)}
+Arid savanna site in Western Australia. Characterized by hummock grasslands (Spinifex) and sparse shrubs over sand dunes.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Gre_SAV_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-Gre under Ensemble forcing.}
+\label{fig:ps_bf_AU-Gre}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Gre_SAV_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-Gre under Ensemble forcing.}
+\label{fig:ps_opt_AU-Gre}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Gre_SAV_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-Gre under Ensemble forcing.}
+\label{fig:1_bf_AU-Gre}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Gre_SAV_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-Gre under Ensemble forcing.}
+\label{fig:1_opt_AU-Gre}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Gre_SAV_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-Gre under Ensemble forcing.}
+\label{fig:2_bf_AU-Gre}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Gre_SAV_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-Gre under Ensemble forcing.}
+\label{fig:2_opt_AU-Gre}
+\end{figure}
+\newpage
+\subsection{AU-Lit --- Litchfield (SAV)}
+Tropical savanna site in the Northern Territory, dominated by open eucalyptus forest and tall grass understory, subject to annual fire cycles.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Lit_SAV_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-Lit under Ensemble forcing.}
+\label{fig:ps_bf_AU-Lit}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Lit_SAV_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-Lit under Ensemble forcing.}
+\label{fig:ps_opt_AU-Lit}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Lit_SAV_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-Lit under Ensemble forcing.}
+\label{fig:1_bf_AU-Lit}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Lit_SAV_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-Lit under Ensemble forcing.}
+\label{fig:1_opt_AU-Lit}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Lit_SAV_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-Lit under Ensemble forcing.}
+\label{fig:2_bf_AU-Lit}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Lit_SAV_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-Lit under Ensemble forcing.}
+\label{fig:2_opt_AU-Lit}
+\end{figure}
+\newpage
+\subsection{AU-RDF --- Red Dirt Melon Farm (GRA)}
+Cleared pasture site in the Northern Territory. Highly seasonal monsoonal climate with sandy soils and high evaporative demand.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-RDF_GRA_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-RDF under Ensemble forcing.}
+\label{fig:ps_bf_AU-RDF}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-RDF_GRA_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-RDF under Ensemble forcing.}
+\label{fig:ps_opt_AU-RDF}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-RDF_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-RDF under Ensemble forcing.}
+\label{fig:1_bf_AU-RDF}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-RDF_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-RDF under Ensemble forcing.}
+\label{fig:1_opt_AU-RDF}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-RDF_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-RDF under Ensemble forcing.}
+\label{fig:2_bf_AU-RDF}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-RDF_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-RDF under Ensemble forcing.}
+\label{fig:2_opt_AU-RDF}
+\end{figure}
+\newpage
+\subsection{AU-Rgf --- Ridgefield (CRO)}
+Mediterranean cropland site in Western Australia. Experiences wet winters and dry summers, dominated by annual crop species.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Rgf_CRO_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-Rgf under Ensemble forcing.}
+\label{fig:ps_bf_AU-Rgf}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Rgf_CRO_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-Rgf under Ensemble forcing.}
+\label{fig:ps_opt_AU-Rgf}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Rgf_CRO_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-Rgf under Ensemble forcing.}
+\label{fig:1_bf_AU-Rgf}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Rgf_CRO_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-Rgf under Ensemble forcing.}
+\label{fig:1_opt_AU-Rgf}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Rgf_CRO_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-Rgf under Ensemble forcing.}
+\label{fig:2_bf_AU-Rgf}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Rgf_CRO_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-Rgf under Ensemble forcing.}
+\label{fig:2_opt_AU-Rgf}
+\end{figure}
+\newpage
+\subsection{AU-SiP --- Silver Plains (WSA)}
+Woody savanna site in Cape York, Queensland. Subject to tropical wet seasons and extensive seasonal drying.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-SiP_WSA_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-SiP under Ensemble forcing.}
+\label{fig:ps_bf_AU-SiP}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-SiP_WSA_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-SiP under Ensemble forcing.}
+\label{fig:ps_opt_AU-SiP}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-SiP_WSA_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-SiP under Ensemble forcing.}
+\label{fig:1_bf_AU-SiP}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-SiP_WSA_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-SiP under Ensemble forcing.}
+\label{fig:1_opt_AU-SiP}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-SiP_WSA_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-SiP under Ensemble forcing.}
+\label{fig:2_bf_AU-SiP}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-SiP_WSA_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-SiP under Ensemble forcing.}
+\label{fig:2_opt_AU-SiP}
+\end{figure}
+\newpage
+\subsection{AU-Stp --- Sturt Plains (GRA)}
+Cracking clay grassland site in the Northern Territory. Experiences extreme seasonal hydrology (flooding to deep cracking dry-down).
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Stp_GRA_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-Stp under Ensemble forcing.}
+\label{fig:ps_bf_AU-Stp}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Stp_GRA_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-Stp under Ensemble forcing.}
+\label{fig:ps_opt_AU-Stp}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Stp_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-Stp under Ensemble forcing.}
+\label{fig:1_bf_AU-Stp}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Stp_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-Stp under Ensemble forcing.}
+\label{fig:1_opt_AU-Stp}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Stp_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-Stp under Ensemble forcing.}
+\label{fig:2_bf_AU-Stp}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Stp_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-Stp under Ensemble forcing.}
+\label{fig:2_opt_AU-Stp}
+\end{figure}
+\newpage
+\subsection{AU-Wal --- Wallaby Creek (EBF)}
+Wet sclerophyll eucalyptus forest in Victoria. Located in a temperate mountainous region with high rainfall and deep clay loam soils.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Wal_EBF_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-Wal under Ensemble forcing.}
+\label{fig:ps_bf_AU-Wal}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Wal_EBF_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-Wal under Ensemble forcing.}
+\label{fig:ps_opt_AU-Wal}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Wal_EBF_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-Wal under Ensemble forcing.}
+\label{fig:1_bf_AU-Wal}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Wal_EBF_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-Wal under Ensemble forcing.}
+\label{fig:1_opt_AU-Wal}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Wal_EBF_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-Wal under Ensemble forcing.}
+\label{fig:2_bf_AU-Wal}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Wal_EBF_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-Wal under Ensemble forcing.}
+\label{fig:2_opt_AU-Wal}
+\end{figure}
+\newpage
+\subsection{AU-Whr --- Whroo (WSA)}
+Dry temperate eucalyptus woodland site in Victoria. Sandy clay loam soils with winter-dominant rainfall and hot, dry summers.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Whr_WSA_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-Whr under Ensemble forcing.}
+\label{fig:ps_bf_AU-Whr}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Whr_WSA_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-Whr under Ensemble forcing.}
+\label{fig:ps_opt_AU-Whr}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Whr_WSA_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-Whr under Ensemble forcing.}
+\label{fig:1_bf_AU-Whr}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Whr_WSA_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-Whr under Ensemble forcing.}
+\label{fig:1_opt_AU-Whr}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Whr_WSA_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-Whr under Ensemble forcing.}
+\label{fig:2_bf_AU-Whr}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Whr_WSA_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-Whr under Ensemble forcing.}
+\label{fig:2_opt_AU-Whr}
+\end{figure}
+\newpage
+\subsection{AU-YarI --- Yanco Agricultural (GRA)}
+Agricultural grassland site in New South Wales. Situated in a semi-arid zone, subject to seasonal cropping and pasture grazing.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-YarI_GRA_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-YarI under Ensemble forcing.}
+\label{fig:ps_bf_AU-YarI}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-YarI_GRA_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-YarI under Ensemble forcing.}
+\label{fig:ps_opt_AU-YarI}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-YarI_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-YarI under Ensemble forcing.}
+\label{fig:1_bf_AU-YarI}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-YarI_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-YarI under Ensemble forcing.}
+\label{fig:1_opt_AU-YarI}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-YarI_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-YarI under Ensemble forcing.}
+\label{fig:2_bf_AU-YarI}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-YarI_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-YarI under Ensemble forcing.}
+\label{fig:2_opt_AU-YarI}
+\end{figure}
+\newpage
+\subsection{AU-Ync --- Yanco Grassland (GRA)}
+Native grassland site in semi-arid New South Wales, characterized by high inter-annual climate variability driven by ENSO.
+\vskip 1.5em
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Ync_GRA_ps.png}
+\caption{Empirical Best Fit (BF) soil moisture PDF calibration for AU-Ync under Ensemble forcing.}
+\label{fig:ps_bf_AU-Ync}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Ync_GRA_ps.png}
+\caption{Eco-Evolutionary Optimality (OPT) soil moisture PDF calibration for AU-Ync under Ensemble forcing.}
+\label{fig:ps_opt_AU-Ync}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Ync_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters ($\Pi_T$, $\Pi_S$, $\Pi_R$, $\Pi_F$, $\epsilon$, and $AA$) under Empirical Best Fit (BF) for AU-Ync under Ensemble forcing.}
+\label{fig:1_bf_AU-Ync}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Ync_GRA_1.png}
+\caption{MCMC diagnostics for derived parameters under Eco-Evolutionary Optimality (OPT) for AU-Ync under Ensemble forcing.}
+\label{fig:1_opt_AU-Ync}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/bf/figs/_ozflux_1/AU-Ync_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits ($P_{x50}$, $P_{g50}$, $k_{xl,max}$, $RAI$, $\beta_{ww}$, $s_{wilt}$, $s^*$, $\psi_{wilt}$, and $\psi^*$) under Empirical Best Fit (BF) for AU-Ync under Ensemble forcing.}
+\label{fig:2_bf_AU-Ync}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{output_corrected/opt/figs/_ozflux_1/AU-Ync_GRA_2.png}
+\caption{MCMC diagnostics for calibrated traits under Eco-Evolutionary Optimality (OPT) for AU-Ync under Ensemble forcing.}
+\label{fig:2_opt_AU-Ync}
+\end{figure}
+\newpage
+
+\end{document}

@@ -1,0 +1,1496 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{longtable}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{PET Formulation Rankings \& Validation}
+\fancyhead[R]{IITB-Monash Research Academy}
+\fancyfoot[C]{\thepage}
+\begin{document}
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\Huge\bfseries Smart Evapotranspiration Ensemble:\par}
+\vspace{0.5cm}
+{\Large\bfseries Potential Evapotranspiration (PET) Formulation Rankings and Validation across 41 OzFlux Sites\par}
+\vspace{1.5cm}
+{\large\bfseries Sanjay N C\par}
+{\large Ph.D. Student, IITB-Monash Research Academy\par}
+{\large Emails: sanjaync@iitb.ac.in, sanjaync@monash.edu\par}
+\vspace{1cm}
+{\large\today\par}
+\vspace{2cm}
+\begin{abstract}
+This report presents a comprehensive cross-validation of 18 different potential evapotranspiration (PET) formulations against the Penman-Monteith ASCE combination reference benchmark across 41 OzFlux eddy-covariance sites. Evaluation metrics including the Kling-Gupta Efficiency (KGE), coefficient of determination ($R^2$), root mean square error (RMSE), and bias are compiled programmatically to rank methods and select the Top-5 best performing formulations for each site. The results serve as a calibration foundation for the Stochastic Soil Water Model (SSWM) and Eco-Evolutionary Optimality (EEO) pipelines across Australian ecosystems.
+\end{abstract}
+\end{titlepage}
+\tableofcontents
+\newpage
+\section{Introduction \& Methodology}
+Accurate estimation of potential evapotranspiration (PET) is critical for diagnosing soil moisture dynamics and vegetation water-use strategies. In this study, we evaluated 18 temperature-based, radiation-based, and combination-based PET formulations against the standard Penman-Monteith (ASCE) combination reference model across 41 eddy-covariance sites in Australia. Evaluation metrics are defined as follows:
+\begin{itemize}
+\item \textbf{Kling-Gupta Efficiency (KGE)}: An objective function that combines correlation, variability, and bias components.
+\item \textbf{Coefficient of Determination ($R^2$)}: Measures the proportion of variance explained by each formulation.
+\item \textbf{Root Mean Square Error (RMSE)}: Quantifies the absolute prediction error magnitude (mm/day).
+\item \textbf{Bias}: Quantifies systemic over- or under-estimation (mm/day).
+\end{itemize}
+At each site, methods are ranked in descending order of KGE. The Top-5 formulations are then selected to build a site-specific consensus ensemble forcing.
+\section{Summary of Top Performing Formulations}
+Table \ref{tab:overall_summary} lists the primary geographic characteristics (latitude, elevation, and vegetation cover) for all 41 sites alongside the best-performing (Rank 1, excluding benchmark) PET method and its corresponding KGE value.
+\begin{longtable}{llccp{2.5in}cc}
+\caption{Geographic details and top-ranked PET formulation performance for 41 OzFlux sites.} \label{tab:overall_summary} \\
+\toprule
+Site ID & Latitude & Elevation (m) & Vegetation & Best PET Method & KGE \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+AdelaideRiver\_L6 & -13.0769 & 111.1 & Woody Savanna & FAO-56 & 0.928 \\
+AliceSpringsMulga1\_L6 & -22.2830 & 583.5 & Canopy + three types of understorey (vegetation1-4) & FAO-56 & 0.975 \\
+AliceSpringsMulga2\_L6 & -22.2830 & 602.0 & Canopy + three types of understorey (vegetation1-4) & FAO-56 & 0.966 \\
+AlpinePeatland\_L6 & -36.8622 & 1671.3 & N/A & FAO-56 & 0.930 \\
+Boyagin\_L6 & -32.4771 & 389.8 & Dry schlerophyll woodland & FAO-24 & 0.938 \\
+CapeTribulation\_L6 & -16.1032 & 98.5 & lowland complex mesophyll vine forest & Turc & 0.791 \\
+Collie\_L6 & -33.4200 & 236.5 & Dry schlerophyll woodland & FAO-56 & 0.965 \\
+CowBay\_L6 & -16.2382 & 110.6 & lowland complex mesophyll vine forest & Thom-Oliver & 0.890 \\
+CumberlandPlain\_L6 & -33.6153 & 28.8 & Dry sclerophyll forest & FAO-56 & 0.867 \\
+DalyPasture\_L6 & -14.0633 & 90.0 & Tropical improved pasture & FAO-24 & 0.907 \\
+DalyUncleared\_L6 & -14.1592 & 109.0 & Woody Savanna & FAO-56 & 0.903 \\
+DigbyPlantation\_L6 & -37.8827 & 79.6 & Eucalyptus globulus (blue gum) & priestley\_taylor & 0.188 \\
+Emerald\_L6 & -23.8587 & 164.6 & Mallee and crop & Thom-Oliver & 0.915 \\
+FoggDam\_L6 & -12.5452 & 73.1 & Ephemeral tropical wetland & FAO-56 & 0.940 \\
+GatumPasture\_L6 & -37.3900 & 189.3 & Phalaris and Subterranean Clover & FAO-56 & 0.925 \\
+Gingin\_L6 & -31.3764 & 35.2 & Banksia woodland & FAO-56 & 0.926 \\
+GreatWesternWoodlands\_L6 & -30.1914 & 447.9 & sparse eucalypt woodland & FAO-56 & 0.919 \\
+HowardSprings\_L6 & -12.4952 & 91.1 & Woody savanna & FAO-56 & 0.873 \\
+Litchfield\_L6 & -13.1790 & 288.2 & Woody savanna & FAO-56 & 0.922 \\
+Loxton\_L6 & -34.4704 & 29.1 & Almond orchard & FAO-56 & 0.907 \\
+MyallValeA\_L6 & -30.5430 & 208.5 & N/A & Penman & 0.966 \\
+MyallValeB\_L6 & -30.6970 & 232.5 & N/A & FAO-56 & 0.985 \\
+Otway\_L6 & -38.5250 & 26.7 & Pasture, grazed & FAO-56 & 0.910 \\
+RedDirtMelonFarm\_L6 & -14.5636 & 212.6 & Woody savannah then cleared & Thom-Oliver & 0.892 \\
+Ridgefield\_L6 & -32.5061 & 664.8 & Wheat & FAO-56 & 0.948 \\
+RiggsCreek\_L6 & -36.6560 & 111.7 & Pasture & Thom-Oliver & 0.962 \\
+RobsonCreek\_L6 & -17.1175 & 726.0 & Regional Ecosystem (RE) 7.3.36a, complex mesophyll vine forest & Turc & 0.931 \\
+SilverPlains\_L6 & -42.0906 & 796.1 & Species rich highland grassland/sedgeland & Thom-Oliver & 0.959 \\
+SnowGum\_L6 & -36.3756 & 1506.4 & Sub-alpine woodland & Penman & 0.930 \\
+SturtPlains\_L6 & -17.1507 & 252.5 & Mitchell Grasslands & FAO-56 & 0.860 \\
+TiTreeEast\_L6 & -22.2830 & 559.5 & Canopy + three types of understorey (vegetation1-4) & Thom-Oliver & 0.926 \\
+Tumbarumba\_L6 & -35.6566 & 1241.3 & wet sclerophyll forest & FAO-24 & 0.964 \\
+WallabyCreek\_L6 & -37.4259 & 713.4 & Mountain Ash & FAO-24 & 0.935 \\
+Warra\_L6 & -43.0950 & 126.7 & Eucalyptus obliqua tall forest & Hargreaves & 0.873 \\
+Wellington\_L6 & -32.5727 & 275.2 & Pasture & Penman & 0.976 \\
+Whroo\_L6 & -36.6732 & 147.1 & Dry schlerophyll woodland & FAO-56 & 0.990 \\
+WombatStateForest1\_L6 & -37.4225 & 695.8 & dry sclerophyll eucalypt forest & FAO-56 & 0.920 \\
+WombatStateForest2\_L6 & -37.4225 & 712.1 & dry sclerophyll eucalypt forest & FAO-56 & 0.971 \\
+Yanco\_L6 & -34.9878 & 92.8 & Pasture & FAO-56 & 0.928 \\
+YarramundiControl\_L6 & -33.6135 & 25.7 & pasture, unirrigated & priestley\_taylor & 0.348 \\
+YarramundiIrrigated\_L6 & -33.6208 & 9.1 & pasture, irrigated & priestley\_taylor & 0.338 \\
+\end{longtable}
+\newpage
+\section{Site-by-Site Formulation Rankings and Visualizations}
+This appendix presents the site-specific vegetation information, the Top-5 ranked PET formulations, and visual verification plots (diurnal/seasonal full record series and performance matrix heatmaps) for each of the 41 sites.
+\subsection{AdelaideRiver\_L6}
+\textbf{Geographic Metadata:} Latitude: -13.0769$^\circ$, Elevation: 111.1 m, Vegetation Type: Woody Savanna.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for AdelaideRiver\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.928 & 0.879 & 0.370 & -0.018 \\
+2 & Turc & 0.906 & 0.849 & 0.424 & -0.074 \\
+3 & Thom-Oliver & 0.897 & 0.822 & 0.463 & 0.104 \\
+4 & Abtew & 0.883 & 0.821 & 0.550 & -0.330 \\
+5 & Penman & 0.843 & 0.745 & 0.633 & -0.349 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./AdelaideRiver_L6/plots/00_AdelaideRiver_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./AdelaideRiver_L6/plots/05_AdelaideRiver_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for AdelaideRiver\_L6.}
+\end{figure}
+\newpage
+\subsection{AliceSpringsMulga1\_L6}
+\textbf{Geographic Metadata:} Latitude: -22.2830$^\circ$, Elevation: 583.5 m, Vegetation Type: Canopy + three types of understorey (vegetation1-4).
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for AliceSpringsMulga1\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.975 & 0.987 & 0.281 & -0.141 \\
+2 & Thom-Oliver & 0.850 & 0.959 & 0.861 & -0.735 \\
+3 & FAO-24 & 0.847 & 0.902 & 1.087 & -0.864 \\
+4 & Turc & 0.838 & 0.864 & 0.927 & -0.250 \\
+5 & Mcguinness-Bordne & 0.768 & 0.656 & 1.422 & -0.229 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./AliceSpringsMulga1_L6/plots/00_AliceSpringsMulga1_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./AliceSpringsMulga1_L6/plots/05_AliceSpringsMulga1_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for AliceSpringsMulga1\_L6.}
+\end{figure}
+\newpage
+\subsection{AliceSpringsMulga2\_L6}
+\textbf{Geographic Metadata:} Latitude: -22.2830$^\circ$, Elevation: 602.0 m, Vegetation Type: Canopy + three types of understorey (vegetation1-4).
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for AliceSpringsMulga2\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.966 & 0.993 & 0.257 & -0.133 \\
+2 & Turc & 0.897 & 0.902 & 0.914 & -0.402 \\
+3 & Mcguinness-Bordne & 0.844 & 0.717 & 1.387 & -0.032 \\
+4 & Thom-Oliver & 0.823 & 0.962 & 0.936 & -0.754 \\
+5 & Jensen-Haise & 0.804 & 0.912 & 0.940 & 0.087 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./AliceSpringsMulga2_L6/plots/00_AliceSpringsMulga2_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./AliceSpringsMulga2_L6/plots/05_AliceSpringsMulga2_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for AliceSpringsMulga2\_L6.}
+\end{figure}
+\newpage
+\subsection{AlpinePeatland\_L6}
+\textbf{Geographic Metadata:} Latitude: -36.8622$^\circ$, Elevation: 1671.3 m, Vegetation Type: N/A.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for AlpinePeatland\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.930 & 0.968 & 0.339 & 0.092 \\
+2 & Penman & 0.919 & 0.942 & 0.437 & 0.046 \\
+3 & Kimberly-Penman & 0.911 & 0.880 & 0.654 & 0.045 \\
+4 & Priestley-Taylor & 0.903 & 0.875 & 0.670 & 0.131 \\
+5 & Makkink & 0.876 & 0.882 & 0.622 & 0.087 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./AlpinePeatland_L6/plots/00_AlpinePeatland_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./AlpinePeatland_L6/plots/05_AlpinePeatland_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for AlpinePeatland\_L6.}
+\end{figure}
+\newpage
+\subsection{Boyagin\_L6}
+\textbf{Geographic Metadata:} Latitude: -32.4771$^\circ$, Elevation: 389.8 m, Vegetation Type: Dry schlerophyll woodland.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for Boyagin\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-24 & 0.938 & 0.900 & 0.811 & -0.041 \\
+2 & FAO-56 & 0.898 & 0.975 & 0.535 & 0.303 \\
+3 & Penman & 0.870 & 0.900 & 0.839 & -0.268 \\
+4 & Turc & 0.865 & 0.904 & 0.804 & -0.165 \\
+5 & Thom-Oliver & 0.848 & 0.957 & 0.695 & -0.416 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Boyagin_L6/plots/00_Boyagin_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Boyagin_L6/plots/05_Boyagin_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for Boyagin\_L6.}
+\end{figure}
+\newpage
+\subsection{CapeTribulation\_L6}
+\textbf{Geographic Metadata:} Latitude: -16.1032$^\circ$, Elevation: 98.5 m, Vegetation Type: lowland complex mesophyll vine forest.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for CapeTribulation\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & Turc & 0.791 & 0.748 & 1.047 & -0.294 \\
+2 & FAO-56 & 0.734 & 0.829 & 0.901 & -0.166 \\
+3 & Thom-Oliver & 0.687 & 0.809 & 0.985 & -0.250 \\
+4 & priestley\_taylor & 0.653 & 0.551 & 1.491 & -0.626 \\
+5 & Jensen-Haise & 0.566 & 0.345 & 1.715 & -0.042 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./CapeTribulation_L6/plots/00_CapeTribulation_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./CapeTribulation_L6/plots/05_CapeTribulation_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for CapeTribulation\_L6.}
+\end{figure}
+\newpage
+\subsection{Collie\_L6}
+\textbf{Geographic Metadata:} Latitude: -33.4200$^\circ$, Elevation: 236.5 m, Vegetation Type: Dry schlerophyll woodland.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for Collie\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.965 & 0.994 & 0.178 & -0.027 \\
+2 & FAO-24 & 0.877 & 0.955 & 0.604 & -0.406 \\
+3 & Mcguinness-Bordne & 0.872 & 0.838 & 0.823 & 0.197 \\
+4 & Abtew & 0.870 & 0.858 & 0.790 & 0.247 \\
+5 & Priestley-Taylor & 0.860 & 0.898 & 0.798 & -0.479 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Collie_L6/plots/00_Collie_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Collie_L6/plots/05_Collie_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for Collie\_L6.}
+\end{figure}
+\newpage
+\subsection{CowBay\_L6}
+\textbf{Geographic Metadata:} Latitude: -16.2382$^\circ$, Elevation: 110.6 m, Vegetation Type: lowland complex mesophyll vine forest.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for CowBay\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & Thom-Oliver & 0.890 & 0.877 & 0.540 & 0.145 \\
+2 & Turc & 0.806 & 0.705 & 0.906 & 0.155 \\
+3 & FAO-56 & 0.797 & 0.879 & 0.574 & -0.169 \\
+4 & priestley\_taylor & 0.643 & 0.442 & 1.197 & -0.273 \\
+5 & Jensen-Haise & 0.600 & 0.379 & 1.380 & 0.234 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./CowBay_L6/plots/00_CowBay_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./CowBay_L6/plots/05_CowBay_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for CowBay\_L6.}
+\end{figure}
+\newpage
+\subsection{CumberlandPlain\_L6}
+\textbf{Geographic Metadata:} Latitude: -33.6153$^\circ$, Elevation: 28.8 m, Vegetation Type: Dry sclerophyll forest.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for CumberlandPlain\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.867 & 0.974 & 0.517 & -0.398 \\
+2 & Priestley-Taylor & 0.854 & 0.890 & 0.813 & -0.470 \\
+3 & Thom-Oliver & 0.853 & 0.966 & 0.563 & -0.409 \\
+4 & Abtew & 0.852 & 0.897 & 0.644 & -0.036 \\
+5 & Hargreaves & 0.850 & 0.744 & 0.996 & -0.062 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./CumberlandPlain_L6/plots/00_CumberlandPlain_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./CumberlandPlain_L6/plots/05_CumberlandPlain_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for CumberlandPlain\_L6.}
+\end{figure}
+\newpage
+\subsection{DalyPasture\_L6}
+\textbf{Geographic Metadata:} Latitude: -14.0633$^\circ$, Elevation: 90.0 m, Vegetation Type: Tropical improved pasture.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for DalyPasture\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-24 & 0.907 & 0.841 & 0.495 & -0.194 \\
+2 & FAO-56 & 0.879 & 0.895 & 0.609 & 0.485 \\
+3 & Turc & 0.833 & 0.749 & 0.613 & 0.237 \\
+4 & Thom-Oliver & 0.820 & 0.717 & 0.740 & 0.412 \\
+5 & Abtew & 0.754 & 0.658 & 0.688 & 0.205 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./DalyPasture_L6/plots/00_DalyPasture_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./DalyPasture_L6/plots/05_DalyPasture_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for DalyPasture\_L6.}
+\end{figure}
+\newpage
+\subsection{DalyUncleared\_L6}
+\textbf{Geographic Metadata:} Latitude: -14.1592$^\circ$, Elevation: 109.0 m, Vegetation Type: Woody Savanna.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for DalyUncleared\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.903 & 0.843 & 0.475 & 0.132 \\
+2 & Thom-Oliver & 0.860 & 0.747 & 0.587 & 0.102 \\
+3 & Turc & 0.833 & 0.698 & 0.637 & -0.118 \\
+4 & FAO-24 & 0.792 & 0.716 & 0.859 & -0.579 \\
+5 & Penman & 0.781 & 0.634 & 0.789 & -0.382 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./DalyUncleared_L6/plots/00_DalyUncleared_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./DalyUncleared_L6/plots/05_DalyUncleared_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for DalyUncleared\_L6.}
+\end{figure}
+\newpage
+\subsection{DigbyPlantation\_L6}
+\textbf{Geographic Metadata:} Latitude: -37.8827$^\circ$, Elevation: 79.6 m, Vegetation Type: Eucalyptus globulus (blue gum).
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for DigbyPlantation\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & priestley\_taylor & 0.188 & 0.959 & 69.582 & 64.629 \\
+2 & Abtew & -0.457 & 0.237 & 112.434 & -104.304 \\
+3 & FAO-24 & -0.461 & 0.236 & 113.071 & -104.997 \\
+4 & Turc & -0.464 & 0.229 & 112.937 & -104.827 \\
+5 & Makkink & -0.471 & 0.222 & 113.220 & -105.089 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./DigbyPlantation_L6/plots/00_DigbyPlantation_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./DigbyPlantation_L6/plots/05_DigbyPlantation_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for DigbyPlantation\_L6.}
+\end{figure}
+\newpage
+\subsection{Emerald\_L6}
+\textbf{Geographic Metadata:} Latitude: -23.8587$^\circ$, Elevation: 164.6 m, Vegetation Type: Mallee and crop.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for Emerald\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & Thom-Oliver & 0.915 & 0.944 & 0.561 & -0.337 \\
+2 & FAO-56 & 0.905 & 0.976 & 0.380 & 0.147 \\
+3 & FAO-24 & 0.871 & 0.929 & 0.777 & -0.584 \\
+4 & Turc & 0.842 & 0.900 & 0.787 & -0.502 \\
+5 & Penman & 0.828 & 0.932 & 0.835 & -0.667 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Emerald_L6/plots/00_Emerald_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Emerald_L6/plots/05_Emerald_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for Emerald\_L6.}
+\end{figure}
+\newpage
+\subsection{FoggDam\_L6}
+\textbf{Geographic Metadata:} Latitude: -12.5452$^\circ$, Elevation: 73.1 m, Vegetation Type: Ephemeral tropical wetland.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for FoggDam\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.940 & 0.949 & 0.258 & -0.091 \\
+2 & Thom-Oliver & 0.889 & 0.899 & 0.413 & -0.237 \\
+3 & Penman & 0.869 & 0.863 & 0.505 & -0.319 \\
+4 & Kimberly-Penman & 0.836 & 0.753 & 0.719 & -0.472 \\
+5 & FAO-24 & 0.831 & 0.871 & 0.834 & -0.741 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./FoggDam_L6/plots/00_FoggDam_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./FoggDam_L6/plots/05_FoggDam_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for FoggDam\_L6.}
+\end{figure}
+\newpage
+\subsection{GatumPasture\_L6}
+\textbf{Geographic Metadata:} Latitude: -37.3900$^\circ$, Elevation: 189.3 m, Vegetation Type: Phalaris and Subterranean Clover.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for GatumPasture\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.925 & 0.984 & 0.315 & 0.089 \\
+2 & Thom-Oliver & 0.879 & 0.949 & 0.550 & -0.278 \\
+3 & Turc & 0.871 & 0.862 & 0.774 & -0.098 \\
+4 & FAO-24 & 0.864 & 0.864 & 0.844 & -0.347 \\
+5 & Penman & 0.861 & 0.880 & 0.754 & -0.225 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./GatumPasture_L6/plots/00_GatumPasture_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./GatumPasture_L6/plots/05_GatumPasture_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for GatumPasture\_L6.}
+\end{figure}
+\newpage
+\subsection{Gingin\_L6}
+\textbf{Geographic Metadata:} Latitude: -31.3764$^\circ$, Elevation: 35.2 m, Vegetation Type: Banksia woodland.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for Gingin\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.926 & 0.992 & 0.291 & -0.107 \\
+2 & Mcguinness-Bordne & 0.861 & 0.805 & 1.023 & 0.132 \\
+3 & FAO-24 & 0.858 & 0.919 & 0.889 & -0.602 \\
+4 & Penman & 0.819 & 0.910 & 0.955 & -0.651 \\
+5 & Thom-Oliver & 0.814 & 0.977 & 0.796 & -0.683 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Gingin_L6/plots/00_Gingin_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Gingin_L6/plots/05_Gingin_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for Gingin\_L6.}
+\end{figure}
+\newpage
+\subsection{GreatWesternWoodlands\_L6}
+\textbf{Geographic Metadata:} Latitude: -30.1914$^\circ$, Elevation: 447.9 m, Vegetation Type: sparse eucalypt woodland.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for GreatWesternWoodlands\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.919 & 0.992 & 0.351 & 0.149 \\
+2 & Jensen-Haise & 0.876 & 0.902 & 1.008 & -0.412 \\
+3 & Mcguinness-Bordne & 0.841 & 0.837 & 1.207 & -0.515 \\
+4 & FAO-24 & 0.820 & 0.890 & 1.234 & -0.848 \\
+5 & Turc & 0.818 & 0.897 & 1.207 & -0.838 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./GreatWesternWoodlands_L6/plots/00_GreatWesternWoodlands_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./GreatWesternWoodlands_L6/plots/05_GreatWesternWoodlands_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for GreatWesternWoodlands\_L6.}
+\end{figure}
+\newpage
+\subsection{HowardSprings\_L6}
+\textbf{Geographic Metadata:} Latitude: -12.4952$^\circ$, Elevation: 91.1 m, Vegetation Type: Woody savanna.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for HowardSprings\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.873 & 0.785 & 0.512 & -0.018 \\
+2 & Thom-Oliver & 0.862 & 0.760 & 0.545 & 0.050 \\
+3 & Turc & 0.808 & 0.710 & 0.602 & -0.111 \\
+4 & Penman & 0.801 & 0.693 & 0.671 & -0.272 \\
+5 & FAO-24 & 0.781 & 0.694 & 0.909 & -0.645 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./HowardSprings_L6/plots/00_HowardSprings_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./HowardSprings_L6/plots/05_HowardSprings_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for HowardSprings\_L6.}
+\end{figure}
+\newpage
+\subsection{Litchfield\_L6}
+\textbf{Geographic Metadata:} Latitude: -13.1790$^\circ$, Elevation: 288.2 m, Vegetation Type: Woody savanna.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for Litchfield\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.922 & 0.916 & 0.371 & -0.066 \\
+2 & Thom-Oliver & 0.758 & 0.817 & 0.634 & -0.305 \\
+3 & FAO-24 & 0.739 & 0.848 & 1.096 & -0.977 \\
+4 & Turc & 0.701 & 0.776 & 0.763 & -0.446 \\
+5 & Jensen-Haise & 0.639 & 0.518 & 1.392 & 0.979 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Litchfield_L6/plots/00_Litchfield_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Litchfield_L6/plots/05_Litchfield_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for Litchfield\_L6.}
+\end{figure}
+\newpage
+\subsection{Loxton\_L6}
+\textbf{Geographic Metadata:} Latitude: -34.4704$^\circ$, Elevation: 29.1 m, Vegetation Type: Almond orchard.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for Loxton\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.907 & 0.990 & 0.334 & -0.179 \\
+2 & Turc & 0.882 & 0.922 & 0.712 & -0.329 \\
+3 & FAO-24 & 0.881 & 0.930 & 0.761 & -0.477 \\
+4 & Mcguinness-Bordne & 0.877 & 0.856 & 0.868 & 0.200 \\
+5 & priestley\_taylor & 0.877 & 0.884 & 0.917 & -0.500 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Loxton_L6/plots/00_Loxton_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Loxton_L6/plots/05_Loxton_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for Loxton\_L6.}
+\end{figure}
+\newpage
+\subsection{MyallValeA\_L6}
+\textbf{Geographic Metadata:} Latitude: -30.5430$^\circ$, Elevation: 208.5 m, Vegetation Type: N/A.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for MyallValeA\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & Penman & 0.966 & 0.953 & 0.475 & -0.033 \\
+2 & FAO-24 & 0.935 & 0.928 & 0.616 & 0.002 \\
+3 & Thom-Oliver & 0.934 & 0.951 & 0.527 & 0.138 \\
+4 & Priestley-Taylor & 0.931 & 0.900 & 0.726 & 0.135 \\
+5 & Turc & 0.906 & 0.909 & 0.677 & 0.140 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./MyallValeA_L6/plots/00_MyallValeA_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./MyallValeA_L6/plots/05_MyallValeA_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for MyallValeA\_L6.}
+\end{figure}
+\newpage
+\subsection{MyallValeB\_L6}
+\textbf{Geographic Metadata:} Latitude: -30.6970$^\circ$, Elevation: 232.5 m, Vegetation Type: N/A.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for MyallValeB\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.985 & 0.986 & 0.267 & -0.057 \\
+2 & Thom-Oliver & 0.929 & 0.965 & 0.461 & -0.204 \\
+3 & priestley\_taylor & 0.916 & 0.916 & 0.711 & -0.310 \\
+4 & Hargreaves & 0.901 & 0.844 & 0.893 & 0.206 \\
+5 & FAO-24 & 0.900 & 0.946 & 0.653 & -0.412 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./MyallValeB_L6/plots/00_MyallValeB_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./MyallValeB_L6/plots/05_MyallValeB_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for MyallValeB\_L6.}
+\end{figure}
+\newpage
+\subsection{Otway\_L6}
+\textbf{Geographic Metadata:} Latitude: -38.5250$^\circ$, Elevation: 26.7 m, Vegetation Type: Pasture, grazed.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for Otway\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.910 & 0.987 & 0.242 & 0.148 \\
+2 & Thom-Oliver & 0.860 & 0.945 & 0.426 & -0.242 \\
+3 & FAO-24 & 0.845 & 0.830 & 0.673 & 0.036 \\
+4 & Penman & 0.837 & 0.861 & 0.645 & 0.267 \\
+5 & Makkink & 0.826 & 0.719 & 0.820 & 0.193 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Otway_L6/plots/00_Otway_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Otway_L6/plots/05_Otway_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for Otway\_L6.}
+\end{figure}
+\newpage
+\subsection{RedDirtMelonFarm\_L6}
+\textbf{Geographic Metadata:} Latitude: -14.5636$^\circ$, Elevation: 212.6 m, Vegetation Type: Woody savannah then cleared.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for RedDirtMelonFarm\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & Thom-Oliver & 0.892 & 0.816 & 0.521 & -0.005 \\
+2 & FAO-56 & 0.881 & 0.856 & 0.547 & 0.282 \\
+3 & Turc & 0.880 & 0.800 & 0.605 & -0.296 \\
+4 & FAO-24 & 0.836 & 0.809 & 0.809 & -0.606 \\
+5 & Penman & 0.823 & 0.735 & 0.791 & -0.511 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./RedDirtMelonFarm_L6/plots/00_RedDirtMelonFarm_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./RedDirtMelonFarm_L6/plots/05_RedDirtMelonFarm_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for RedDirtMelonFarm\_L6.}
+\end{figure}
+\newpage
+\subsection{Ridgefield\_L6}
+\textbf{Geographic Metadata:} Latitude: -32.5061$^\circ$, Elevation: 664.8 m, Vegetation Type: Wheat.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for Ridgefield\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.948 & 0.961 & 0.581 & 0.195 \\
+2 & Turc & 0.875 & 0.819 & 1.248 & -0.127 \\
+3 & FAO-24 & 0.775 & 0.762 & 1.551 & -0.803 \\
+4 & Thom-Oliver & 0.764 & 0.895 & 1.121 & -0.588 \\
+5 & Jensen-Haise & 0.740 & 0.633 & 1.869 & -0.758 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Ridgefield_L6/plots/00_Ridgefield_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Ridgefield_L6/plots/05_Ridgefield_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for Ridgefield\_L6.}
+\end{figure}
+\newpage
+\subsection{RiggsCreek\_L6}
+\textbf{Geographic Metadata:} Latitude: -36.6560$^\circ$, Elevation: 111.7 m, Vegetation Type: Pasture.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for RiggsCreek\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & Thom-Oliver & 0.962 & 0.960 & 0.462 & -0.100 \\
+2 & Turc & 0.957 & 0.919 & 0.648 & 0.016 \\
+3 & FAO-24 & 0.908 & 0.920 & 0.702 & -0.146 \\
+4 & Hargreaves & 0.900 & 0.841 & 0.929 & 0.169 \\
+5 & Penman & 0.893 & 0.950 & 0.576 & -0.256 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./RiggsCreek_L6/plots/00_RiggsCreek_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./RiggsCreek_L6/plots/05_RiggsCreek_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for RiggsCreek\_L6.}
+\end{figure}
+\newpage
+\subsection{RobsonCreek\_L6}
+\textbf{Geographic Metadata:} Latitude: -17.1175$^\circ$, Elevation: 726.0 m, Vegetation Type: Regional Ecosystem (RE) 7.3.36a, complex mesophyll vine forest.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for RobsonCreek\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & Turc & 0.931 & 0.885 & 0.716 & -0.140 \\
+2 & priestley\_taylor & 0.761 & 0.591 & 1.396 & 0.261 \\
+3 & Jensen-Haise & 0.727 & 0.546 & 1.459 & -0.291 \\
+4 & FAO-56 & 0.690 & 0.926 & 1.040 & -0.771 \\
+5 & Thom-Oliver & 0.670 & 0.927 & 1.058 & -0.768 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./RobsonCreek_L6/plots/00_RobsonCreek_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./RobsonCreek_L6/plots/05_RobsonCreek_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for RobsonCreek\_L6.}
+\end{figure}
+\newpage
+\subsection{SilverPlains\_L6}
+\textbf{Geographic Metadata:} Latitude: -42.0906$^\circ$, Elevation: 796.1 m, Vegetation Type: Species rich highland grassland/sedgeland.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for SilverPlains\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & Thom-Oliver & 0.959 & 0.932 & 0.343 & -0.039 \\
+2 & FAO-56 & 0.903 & 0.965 & 0.292 & 0.114 \\
+3 & Turc & 0.849 & 0.814 & 0.621 & -0.092 \\
+4 & Penman & 0.833 & 0.861 & 0.563 & 0.108 \\
+5 & Hargreaves & 0.816 & 0.717 & 0.756 & 0.155 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./SilverPlains_L6/plots/00_SilverPlains_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./SilverPlains_L6/plots/05_SilverPlains_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for SilverPlains\_L6.}
+\end{figure}
+\newpage
+\subsection{SnowGum\_L6}
+\textbf{Geographic Metadata:} Latitude: -36.3756$^\circ$, Elevation: 1506.4 m, Vegetation Type: Sub-alpine woodland.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for SnowGum\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & Penman & 0.930 & 0.957 & 0.431 & -0.170 \\
+2 & FAO-56 & 0.910 & 0.986 & 0.302 & -0.156 \\
+3 & FAO-24 & 0.902 & 0.944 & 0.507 & 0.003 \\
+4 & Makkink & 0.896 & 0.931 & 0.522 & -0.101 \\
+5 & Priestley-Taylor & 0.877 & 0.902 & 0.670 & -0.026 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./SnowGum_L6/plots/00_SnowGum_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./SnowGum_L6/plots/05_SnowGum_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for SnowGum\_L6.}
+\end{figure}
+\newpage
+\subsection{SturtPlains\_L6}
+\textbf{Geographic Metadata:} Latitude: -17.1507$^\circ$, Elevation: 252.5 m, Vegetation Type: Mitchell Grasslands.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for SturtPlains\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.860 & 0.912 & 0.692 & 0.469 \\
+2 & Thom-Oliver & 0.836 & 0.714 & 0.848 & -0.165 \\
+3 & FAO-24 & 0.822 & 0.748 & 1.013 & -0.647 \\
+4 & Turc & 0.816 & 0.680 & 0.961 & -0.292 \\
+5 & Penman & 0.642 & 0.571 & 1.354 & -0.914 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./SturtPlains_L6/plots/00_SturtPlains_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./SturtPlains_L6/plots/05_SturtPlains_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for SturtPlains\_L6.}
+\end{figure}
+\newpage
+\subsection{TiTreeEast\_L6}
+\textbf{Geographic Metadata:} Latitude: -22.2830$^\circ$, Elevation: 559.5 m, Vegetation Type: Canopy + three types of understorey (vegetation1-4).
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for TiTreeEast\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & Thom-Oliver & 0.926 & 0.931 & 0.652 & -0.391 \\
+2 & FAO-56 & 0.879 & 0.982 & 0.435 & 0.248 \\
+3 & FAO-24 & 0.875 & 0.850 & 0.977 & -0.569 \\
+4 & Hargreaves & 0.760 & 0.725 & 1.406 & -0.945 \\
+5 & Turc & 0.749 & 0.785 & 1.140 & 0.130 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./TiTreeEast_L6/plots/00_TiTreeEast_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./TiTreeEast_L6/plots/05_TiTreeEast_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for TiTreeEast\_L6.}
+\end{figure}
+\newpage
+\subsection{Tumbarumba\_L6}
+\textbf{Geographic Metadata:} Latitude: -35.6566$^\circ$, Elevation: 1241.3 m, Vegetation Type: wet sclerophyll forest.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for Tumbarumba\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-24 & 0.964 & 0.963 & 0.418 & -0.012 \\
+2 & FAO-56 & 0.940 & 0.987 & 0.265 & -0.028 \\
+3 & priestley\_taylor & 0.922 & 0.899 & 0.705 & 0.073 \\
+4 & Priestley-Taylor & 0.919 & 0.904 & 0.651 & 0.026 \\
+5 & Kimberly-Penman & 0.915 & 0.891 & 0.703 & -0.124 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Tumbarumba_L6/plots/00_Tumbarumba_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Tumbarumba_L6/plots/05_Tumbarumba_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for Tumbarumba\_L6.}
+\end{figure}
+\newpage
+\subsection{WallabyCreek\_L6}
+\textbf{Geographic Metadata:} Latitude: -37.4259$^\circ$, Elevation: 713.4 m, Vegetation Type: Mountain Ash.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for WallabyCreek\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-24 & 0.935 & 0.888 & 0.483 & 0.043 \\
+2 & priestley\_taylor & 0.864 & 0.826 & 0.645 & 0.045 \\
+3 & Thom-Oliver & 0.830 & 0.876 & 0.566 & 0.267 \\
+4 & Turc & 0.807 & 0.846 & 0.624 & 0.289 \\
+5 & Makkink & 0.778 & 0.838 & 0.649 & 0.320 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./WallabyCreek_L6/plots/00_WallabyCreek_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./WallabyCreek_L6/plots/05_WallabyCreek_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for WallabyCreek\_L6.}
+\end{figure}
+\newpage
+\subsection{Warra\_L6}
+\textbf{Geographic Metadata:} Latitude: -43.0950$^\circ$, Elevation: 126.7 m, Vegetation Type: Eucalyptus obliqua tall forest.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for Warra\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & Hargreaves & 0.873 & 0.769 & 0.749 & -0.032 \\
+2 & FAO-56 & 0.872 & 0.976 & 0.330 & -0.196 \\
+3 & Priestley-Taylor & 0.862 & 0.924 & 0.515 & -0.281 \\
+4 & Kimberly-Penman & 0.838 & 0.891 & 0.613 & -0.312 \\
+5 & Penman & 0.837 & 0.967 & 0.424 & -0.309 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Warra_L6/plots/00_Warra_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Warra_L6/plots/05_Warra_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for Warra\_L6.}
+\end{figure}
+\newpage
+\subsection{Wellington\_L6}
+\textbf{Geographic Metadata:} Latitude: -32.5727$^\circ$, Elevation: 275.2 m, Vegetation Type: Pasture.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for Wellington\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & Penman & 0.976 & 0.973 & 0.327 & -0.070 \\
+2 & priestley\_taylor & 0.955 & 0.922 & 0.555 & -0.047 \\
+3 & Turc & 0.952 & 0.941 & 0.496 & 0.138 \\
+4 & Thom-Oliver & 0.924 & 0.968 & 0.411 & 0.161 \\
+5 & FAO-56 & 0.913 & 0.979 & 0.367 & 0.169 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Wellington_L6/plots/00_Wellington_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Wellington_L6/plots/05_Wellington_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for Wellington\_L6.}
+\end{figure}
+\newpage
+\subsection{Whroo\_L6}
+\textbf{Geographic Metadata:} Latitude: -36.6732$^\circ$, Elevation: 147.1 m, Vegetation Type: Dry schlerophyll woodland.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for Whroo\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.990 & 0.986 & 0.259 & 0.026 \\
+2 & FAO-24 & 0.898 & 0.930 & 0.659 & -0.320 \\
+3 & Priestley-Taylor & 0.897 & 0.866 & 0.841 & -0.256 \\
+4 & Hargreaves & 0.892 & 0.826 & 0.905 & -0.069 \\
+5 & priestley\_taylor & 0.890 & 0.866 & 0.858 & -0.283 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Whroo_L6/plots/00_Whroo_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Whroo_L6/plots/05_Whroo_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for Whroo\_L6.}
+\end{figure}
+\newpage
+\subsection{WombatStateForest1\_L6}
+\textbf{Geographic Metadata:} Latitude: -37.4225$^\circ$, Elevation: 695.8 m, Vegetation Type: dry sclerophyll eucalypt forest.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for WombatStateForest1\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.920 & 0.982 & 0.347 & -0.205 \\
+2 & Priestley-Taylor & 0.906 & 0.876 & 0.736 & -0.118 \\
+3 & Jensen-Haise & 0.896 & 0.952 & 0.531 & -0.207 \\
+4 & Kimberly-Penman & 0.895 & 0.874 & 0.778 & -0.232 \\
+5 & FAO-24 & 0.881 & 0.947 & 0.580 & -0.323 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./WombatStateForest1_L6/plots/00_WombatStateForest1_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./WombatStateForest1_L6/plots/05_WombatStateForest1_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for WombatStateForest1\_L6.}
+\end{figure}
+\newpage
+\subsection{WombatStateForest2\_L6}
+\textbf{Geographic Metadata:} Latitude: -37.4225$^\circ$, Elevation: 712.1 m, Vegetation Type: dry sclerophyll eucalypt forest.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for WombatStateForest2\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.971 & 0.979 & 0.314 & 0.079 \\
+2 & Penman & 0.949 & 0.960 & 0.437 & -0.014 \\
+3 & Makkink & 0.935 & 0.904 & 0.649 & -0.079 \\
+4 & Turc & 0.918 & 0.953 & 0.512 & -0.234 \\
+5 & Mcguinness-Bordne & 0.911 & 0.833 & 0.863 & 0.025 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./WombatStateForest2_L6/plots/00_WombatStateForest2_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./WombatStateForest2_L6/plots/05_WombatStateForest2_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for WombatStateForest2\_L6.}
+\end{figure}
+\newpage
+\subsection{Yanco\_L6}
+\textbf{Geographic Metadata:} Latitude: -34.9878$^\circ$, Elevation: 92.8 m, Vegetation Type: Pasture.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for Yanco\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & FAO-56 & 0.928 & 0.989 & 0.356 & -0.004 \\
+2 & Jensen-Haise & 0.882 & 0.879 & 1.071 & -0.202 \\
+3 & Mcguinness-Bordne & 0.880 & 0.828 & 1.153 & -0.109 \\
+4 & Turc & 0.831 & 0.868 & 1.157 & -0.568 \\
+5 & FAO-24 & 0.825 & 0.884 & 1.164 & -0.683 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Yanco_L6/plots/00_Yanco_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./Yanco_L6/plots/05_Yanco_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for Yanco\_L6.}
+\end{figure}
+\newpage
+\subsection{YarramundiControl\_L6}
+\textbf{Geographic Metadata:} Latitude: -33.6135$^\circ$, Elevation: 25.7 m, Vegetation Type: pasture, unirrigated.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for YarramundiControl\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & priestley\_taylor & 0.348 & 0.991 & 72.484 & 58.627 \\
+2 & Priestley-Taylor & -0.618 & 0.026 & 153.349 & -124.718 \\
+3 & Mcguinness-Bordne & -0.618 & 0.021 & 152.252 & -123.370 \\
+4 & Jensen-Haise & -0.627 & 0.019 & 153.048 & -124.340 \\
+5 & Abtew & -0.629 & 0.020 & 153.071 & -124.324 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./YarramundiControl_L6/plots/00_YarramundiControl_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./YarramundiControl_L6/plots/05_YarramundiControl_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for YarramundiControl\_L6.}
+\end{figure}
+\newpage
+\subsection{YarramundiIrrigated\_L6}
+\textbf{Geographic Metadata:} Latitude: -33.6208$^\circ$, Elevation: 9.1 m, Vegetation Type: pasture, irrigated.
+
+\vspace{0.2cm}
+\begin{table}[H]
+\centering
+\caption{Top-5 Ranked PET Formulations for YarramundiIrrigated\_L6.}
+\begin{tabular}{llcccc}
+\toprule
+Rank & Method & KGE & $R^2$ & RMSE (mm/d) & Bias (mm/d) \\
+\midrule
+1 & priestley\_taylor & 0.338 & 0.989 & 74.711 & 61.523 \\
+2 & Priestley-Taylor & -0.626 & 0.021 & 155.420 & -128.686 \\
+3 & Mcguinness-Bordne & -0.630 & 0.015 & 154.309 & -127.333 \\
+4 & Jensen-Haise & -0.631 & 0.017 & 155.098 & -128.297 \\
+5 & Turc & -0.635 & 0.017 & 155.475 & -128.710 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./YarramundiIrrigated_L6/plots/00_YarramundiIrrigated_L6_Full_Record.png}
+\caption{Comparison of daily timeseries over the full record.}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\textwidth}
+\centering
+\includegraphics[width=\textwidth]{./YarramundiIrrigated_L6/plots/05_YarramundiIrrigated_L6_Performance_Matrix.png}
+\caption{Performance evaluation matrix.}
+\end{subfigure}
+\caption{Visual diagnostics and performance evaluation for YarramundiIrrigated\_L6.}
+\end{figure}
+\newpage
+\end{document}

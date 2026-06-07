@@ -1,0 +1,139 @@
+Sp,ID,DT,leaf_WP (MPa),Predawn (PD) or Midday (MD),Season
+Argyrodendron peralatum,20,17/03/2020 06:30,-0.566666667,PD,wet
+Argyrodendron peralatum,158_RC,17/03/2020 05:00,-0.55,PD,wet
+Argyrodendron peralatum,340,18/03/2020 06:00,-0.35,PD,wet
+Argyrodendron peralatum,510,17/03/2020 06:00,-0.783333333,PD,wet
+Cardwellia sublimis,307,16/03/2020 05:30,-0.116666667,PD,wet
+Cardwellia sublimis,486,17/03/2020 06:30,-0.133333333,PD,wet
+Cardwellia sublimis,487,17/03/2020 06:30,-0.233333333,PD,wet
+Cardwellia sublimis,737,16/03/2020 06:00,-0.166666667,PD,wet
+Cryptocarya mackinnoniana,178,18/03/2020 04:30,-0.05,PD,wet
+Cryptocarya mackinnoniana,322,18/03/2020 06:00,-0.216666667,PD,wet
+Cryptocarya mackinnoniana,349,18/03/2020 05:00,-0.1,PD,wet
+Daphnandra repandula,216,18/03/2020 05:00,-0.1,PD,wet
+Daphnandra repandula,233,17/03/2020 05:00,-0.216666667,PD,wet
+Daphnandra repandula,355,18/03/2020 05:30,-0.116666667,PD,wet
+Daphnandra repandula,439,16/03/2020 06:30,-0.266666667,PD,wet
+Litsea leefeana,267,16/03/2020 05:00,-0.25,PD,wet
+Litsea leefeana,385,16/03/2020 05:30,-0.25,PD,wet
+Litsea leefeana,507,17/03/2020 06:00,-0.233333333,PD,wet
+Sloanea australis subsp. parviflora,191,16/03/2020 04:30,-0.1,PD,wet
+Sloanea australis subsp. parviflora,192,16/03/2020 04:30,-0.116666667,PD,wet
+Sloanea australis subsp. parviflora,299,17/03/2020 05:30,-0.116666667,PD,wet
+Sloanea australis subsp. parviflora,440,16/03/2020 06:30,-0.05,PD,wet
+Argyrodendron peralatum,20,17/03/2020 12:30,-0.866666667,MD,wet
+Argyrodendron peralatum,158_RC,17/03/2020 13:30,-0.483333333,MD,wet
+Argyrodendron peralatum,340,18/03/2020 12:30,-1,MD,wet
+Argyrodendron peralatum,510,17/03/2020 13:00,-0.516666667,MD,wet
+Cardwellia sublimis,307,16/03/2020 13:00,-0.833333333,MD,wet
+Cardwellia sublimis,486,17/03/2020 12:30,-0.216666667,MD,wet
+Cardwellia sublimis,487,17/03/2020 12:30,-0.05,MD,wet
+Cardwellia sublimis,737,16/03/2020 14:00,-0.916666667,MD,wet
+Cryptocarya mackinnoniana,178,18/03/2020 13:00,-0.416666667,MD,wet
+Cryptocarya mackinnoniana,322,18/03/2020 13:30,-0.516666667,MD,wet
+Cryptocarya mackinnoniana,349,18/03/2020 13:00,-0.383333333,MD,wet
+Daphnandra repandula,216,18/03/2020 12:30,-0.35,MD,wet
+Daphnandra repandula,233,17/03/2020 13:30,-0.1,MD,wet
+Daphnandra repandula,355,18/03/2020 12:30,-0.916666667,MD,wet
+Daphnandra repandula,439,16/03/2020 12:30,-0.333333333,MD,wet
+Litsea leefeana,267,16/03/2020 13:30,-0.733333333,MD,wet
+Litsea leefeana,385,16/03/2020 13:00,-0.6,MD,wet
+Litsea leefeana,507,17/03/2020 13:00,-0.05,MD,wet
+Sloanea australis subsp. parviflora,191,16/03/2020 14:00,-0.35,MD,wet
+Sloanea australis subsp. parviflora,192,16/03/2020 14:00,-0.483333333,MD,wet
+Sloanea australis subsp. parviflora,299,17/03/2020 14:00,-0.05,MD,wet
+Sloanea australis subsp. parviflora,440,16/03/2020 12:30,-0.55,MD,wet
+Argyrodendron peralatum,20,19/09/2019 05:00,-0.42,PD,mid
+Argyrodendron peralatum,158_RC,20/09/2019 07:00,-0.456666667,PD,mid
+Argyrodendron peralatum,340,18/09/2019 06:30,-0.48,PD,mid
+Argyrodendron peralatum,510,19/09/2019 06:00,-0.403333333,PD,mid
+Cardwellia sublimis,307,19/09/2019 06:30,-0.373333333,PD,mid
+Cardwellia sublimis,486,19/09/2019 05:00,-0.353333333,PD,mid
+Cardwellia sublimis,487,19/09/2019 05:30,-0.18,PD,mid
+Cardwellia sublimis,737,19/09/2019 06:00,-0.163333333,PD,mid
+Cryptocarya mackinnoniana,178,18/09/2019 06:30,-0.32,PD,mid
+Cryptocarya mackinnoniana,322,18/09/2019 07:00,-0.166666667,PD,mid
+Cryptocarya mackinnoniana,349,18/09/2019 05:00,-0.153333333,PD,mid
+Cryptocarya mackinnoniana,534,18/09/2019 07:30,-0.19,PD,mid
+Daphnandra repandula,216,18/09/2019 05:30,-0.163333333,PD,mid
+Daphnandra repandula,233,20/09/2019 05:30,-0.206666667,PD,mid
+Daphnandra repandula,355,18/09/2019 07:30,-0.21,PD,mid
+Daphnandra repandula,439,19/09/2019 04:30,-0.426666667,PD,mid
+Litsea leefeana,267,20/09/2019 05:00,-0.23,PD,mid
+Litsea leefeana,332,20/09/2019 06:00,-0.156666667,PD,mid
+Litsea leefeana,385,19/09/2019 06:00,-0.326666667,PD,mid
+Litsea leefeana,507,19/09/2019 06:00,-0.593333333,PD,mid
+Sloanea australis subsp. parviflora,191,20/09/2019 06:30,-0.326666667,PD,mid
+Sloanea australis subsp. parviflora,192,20/09/2019 06:30,-0.25,PD,mid
+Sloanea australis subsp. parviflora,299,20/09/2019 06:00,-0.226666667,PD,mid
+Sloanea australis subsp. parviflora,440,19/09/2019 05:30,-0.286666667,PD,mid
+Argyrodendron peralatum,20,19/09/2019 13:30,-1.046666667,MD,mid
+Argyrodendron peralatum,158_RC,20/09/2019 12:30,-1.303333333,MD,mid
+Argyrodendron peralatum,340,18/09/2019 13:00,-1.846666667,MD,mid
+Argyrodendron peralatum,510,19/09/2019 12:30,-1.17,MD,mid
+Cardwellia sublimis,307,19/09/2019 12:30,-1.216666667,MD,mid
+Cardwellia sublimis,486,19/09/2019 13:30,-0.52,MD,mid
+Cardwellia sublimis,487,19/09/2019 13:30,-1.566666667,MD,mid
+Cardwellia sublimis,737,19/09/2019 12:30,-0.71,MD,mid
+Cryptocarya mackinnoniana,178,18/09/2019 14:00,-1.453333333,MD,mid
+Cryptocarya mackinnoniana,322,18/09/2019 13:00,-1.343333333,MD,mid
+Cryptocarya mackinnoniana,349,18/09/2019 13:30,-0.956666667,MD,mid
+Cryptocarya mackinnoniana,534,18/09/2019 12:30,-1.083333333,MD,mid
+Daphnandra repandula,216,18/09/2019 14:00,-0.59,MD,mid
+Daphnandra repandula,233,20/09/2019 12:30,-1.096666667,MD,mid
+Daphnandra repandula,355,18/09/2019 12:30,-1.11,MD,mid
+Daphnandra repandula,439,19/09/2019 13:30,-0.586666667,MD,mid
+Litsea leefeana,267,20/09/2019 13:00,-0.596666667,MD,mid
+Litsea leefeana,332,20/09/2019 12:00,-1.033333333,MD,mid
+Litsea leefeana,385,19/09/2019 12:30,-1.083333333,MD,mid
+Litsea leefeana,507,19/09/2019 12:30,-1.39,MD,mid
+Sloanea australis subsp. parviflora,191,20/09/2019 12:30,-0.946666667,MD,mid
+Sloanea australis subsp. parviflora,192,20/09/2019 12:30,-0.833333333,MD,mid
+Sloanea australis subsp. parviflora,299,20/09/2019 13:00,-1.026666667,MD,mid
+Sloanea australis subsp. parviflora,440,19/09/2019 13:00,-0.416666667,MD,mid
+Argyrodendron peralatum,20,11/11/2019 05:30,-0.593333333,PD,dry
+Argyrodendron peralatum,158_RC,08/11/2019 05:00,-0.853333333,PD,dry
+Argyrodendron peralatum,340,10/11/2019 04:30,-0.746666667,PD,dry
+Argyrodendron peralatum,510,09/11/2019 05:30,-0.566666667,PD,dry
+Cardwellia sublimis,307,08/11/2019 06:00,-0.165,PD,dry
+Cardwellia sublimis,486,09/11/2019 06:00,-0.313333333,PD,dry
+Cardwellia sublimis,487,09/11/2019 06:00,-0.403333333,PD,dry
+Cardwellia sublimis,737,09/11/2019 05:00,-0.52,PD,dry
+Cryptocarya mackinnoniana,322,10/11/2019 05:00,-0.656666667,PD,dry
+Cryptocarya mackinnoniana,349,10/11/2019 05:30,-0.776666667,PD,dry
+Cryptocarya mackinnoniana,534,10/11/2019 05:00,-0.503333333,PD,dry
+Daphnandra repandula,216,10/11/2019 05:30,-0.366666667,PD,dry
+Daphnandra repandula,233,08/11/2019 05:00,-0.78,PD,dry
+Daphnandra repandula,355,10/11/2019 05:30,-0.356666667,PD,dry
+Daphnandra repandula,439,11/11/2019 05:00,-0.576666667,PD,dry
+Litsea leefeana,267,08/11/2019 05:30,-0.766666667,PD,dry
+Litsea leefeana,332,09/11/2019 05:30,-0.53,PD,dry
+Litsea leefeana,385,09/11/2019 05:00,-0.346666667,PD,dry
+Litsea leefeana,507,09/11/2019 05:30,-0.556666667,PD,dry
+Sloanea australis subsp. parviflora,191,08/11/2019 04:30,-0.55,PD,dry
+Sloanea australis subsp. parviflora,192,08/11/2019 04:30,-1.026666667,PD,dry
+Sloanea australis subsp. parviflora,299,09/11/2019 04:30,-0.51,PD,dry
+Sloanea australis subsp. parviflora,440,11/11/2019 05:30,-0.416666667,PD,dry
+Argyrodendron peralatum,20,11/11/2019 12:30,-1.186666667,MD,dry
+Argyrodendron peralatum,158_RC,08/11/2019 12:30,-1.226666667,MD,dry
+Argyrodendron peralatum,340,10/11/2019 13:00,-1.786666667,MD,dry
+Argyrodendron peralatum,510,09/11/2019 14:00,-1.006666667,MD,dry
+Cardwellia sublimis,307,08/11/2019 12:00,-0.833333333,MD,dry
+Cardwellia sublimis,486,09/11/2019 13:00,-1.366666667,MD,dry
+Cardwellia sublimis,487,09/11/2019 13:00,-1.36,MD,dry
+Cardwellia sublimis,737,09/11/2019 12:30,-1.33,MD,dry
+Cryptocarya mackinnoniana,178,10/11/2019 12:00,-1.426666667,MD,dry
+Cryptocarya mackinnoniana,322,10/11/2019 12:30,-1.583333333,MD,dry
+Cryptocarya mackinnoniana,349,10/11/2019 12:30,-0.92,MD,dry
+Cryptocarya mackinnoniana,534,10/11/2019 13:00,-1.383333333,MD,dry
+Daphnandra repandula,216,10/11/2019 12:00,-0.583333333,MD,dry
+Daphnandra repandula,233,08/11/2019 13:00,-1.263333333,MD,dry
+Daphnandra repandula,355,10/11/2019 12:30,-1.34,MD,dry
+Daphnandra repandula,439,11/11/2019 12:30,-0.653333333,MD,dry
+Litsea leefeana,267,08/11/2019 12:30,-1.34,MD,dry
+Litsea leefeana,385,09/11/2019 14:00,-1.123333333,MD,dry
+Litsea leefeana,507,09/11/2019 14:00,-1.203333333,MD,dry
+Sloanea australis subsp. parviflora,191,08/11/2019 12:30,-1.323333333,MD,dry
+Sloanea australis subsp. parviflora,192,08/11/2019 12:30,-1.18,MD,dry
+Sloanea australis subsp. parviflora,299,09/11/2019 13:30,-1.26,MD,dry
+Sloanea australis subsp. parviflora,440,11/11/2019 12:30,-0.536666667,MD,dry

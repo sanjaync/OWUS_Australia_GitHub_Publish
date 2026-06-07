@@ -1,0 +1,35 @@
+siteID,original_site,lat,lon,modis_IGBP_code,modis_IGBP,modis_PFT_code,modis_PFT
+AU-Dig,DigbyPlantation,-37.88269,141.61647,2,Evergreen Broadleaf Forests: dominated by evergreen broadleaf and palmate trees (canopy >2m). Tree cover >60%.,2,Evergreen Needleleaf Trees: dominated by evergreen conifer trees (>2m). Tree cover >10%.
+AU-Gat,GatumPasture,-37.39004,141.9609,10,Grasslands: dominated by herbaceous annuals (<2m).,6,not cultivated.
+AU-Otw,Otway,-38.525,142.81,9,Savannas: tree cover 10-30% (canopy >2m).,4,Deciduous Broadleaf Trees: dominated by deciduous broadleaf trees (>2m). Tree cover >10%.
+AU-SiP,SilverPlains,-42.09056,147.08749,8,Woody Savannas: tree cover 30-60% (canopy >2m).,2,Evergreen Broadleaf Trees: dominated by evergreen broadleaf and palmate trees (>2m). Tree cover >10%.
+AU-Eme,Emerald,-23.85872,148.47459,10,Grasslands: dominated by herbaceous annuals (<2m).,6,not cultivated.
+AU-Alp,AlpinePeatland,-36.86222,147.32083,1,Evergreen Needleleaf Forests: dominated by evergreen conifer trees (canopy >2m). Tree cover >60%.,1,Evergreen Needleleaf Trees: dominated by evergreen conifer trees (>2m). Tree cover >10%.
+AU-Rig,RiggsCreek,-36.656,145.576,10,Grasslands: dominated by herbaceous annuals (<2m).,6,not cultivated.
+AU-YarC,YarramundiControl,-33.61347,150.73486,9,Savannas: tree cover 10-30% (canopy >2m).,2,Evergreen Needleleaf Trees: dominated by evergreen conifer trees (>2m). Tree cover >10%.
+AU-YarI,YarramundiIrrigated,-33.62081,150.76329,10,Grasslands: dominated by herbaceous annuals (<2m).,6,not cultivated.
+AU-Ync,Yanco,-34.9878,146.2908,10,Grasslands: dominated by herbaceous annuals (<2m).,6,not cultivated.
+AU-DaP,DalyPasture,-14.0633,131.3181,10,Grasslands: dominated by herbaceous annuals (<2m).,6,not cultivated.
+AU-Fog,FoggDam,-12.5452,131.30721,10,Grasslands: dominated by herbaceous annuals (<2m).,6,not cultivated.
+AU-Stp,SturtPlains,-17.1507,133.35021,10,Grasslands: dominated by herbaceous annuals (<2m).,6,not cultivated.
+AU-Wal,WallabyCreek,-37.4259,145.1878,2,Evergreen Broadleaf Forests: dominated by evergreen broadleaf and palmate trees (canopy >2m). Tree cover >60%.,2,Evergreen Broadleaf Trees: dominated by evergreen broadleaf and palmate trees (>2m). Tree cover >10%.
+AU-Col,Collie,-33.42,116.237,8,Woody Savannas: tree cover 30-60% (canopy >2m).,1,Evergreen Needleleaf Trees: dominated by evergreen conifer trees (>2m). Tree cover >10%.
+AU-Boy,Boyagin,-32.47709,116.93856,10,Grasslands: dominated by herbaceous annuals (<2m).,6,not cultivated.
+AU-Adr,AdelaideRiver,-13.0769,131.1178,10,Grasslands: dominated by herbaceous annuals (<2m).,6,not cultivated.
+AU-DaS,DalyUncleared,-14.1592,131.38811,7,Open Shrublands: dominated by woody perennials (1-2m height) 10-60% cover.,5,Shrub: Shrub (1-2m) cover >10%.
+AU-How,HowardSprings,-12.4952,131.15005,9,Savannas: tree cover 10-30% (canopy >2m).,4,Deciduous Broadleaf Trees: dominated by deciduous broadleaf trees (>2m). Tree cover >10%.
+AU-Lit,Litchfield,-13.17904,130.79454,9,Savannas: tree cover 10-30% (canopy >2m).,4,Deciduous Broadleaf Trees: dominated by deciduous broadleaf trees (>2m). Tree cover >10%.
+AU-Gre,GreatWesternWoodlands,-30.1914,120.65416,9,Savannas: tree cover 10-30% (canopy >2m).,2,Evergreen Needleleaf Trees: dominated by evergreen conifer trees (>2m). Tree cover >10%.
+AU-Rgf,Ridgefield,-32.5061,116.96683,12,cropland.,7,Cereal Croplands: dominated by herbaceous annuals (<2m). At least 60% cultivated cereal crops.
+AU-Cum,CumberlandPlain,-33.61528,150.72361,2,Evergreen Broadleaf Forests: dominated by evergreen broadleaf and palmate trees (canopy >2m). Tree cover >60%.,2,Evergreen Needleleaf Trees: dominated by evergreen conifer trees (>2m). Tree cover >10%.
+AU-Ctr,CapeTribulation,-16.10322,145.44692,2,Evergreen Broadleaf Forests: dominated by evergreen broadleaf and palmate trees (canopy >2m). Tree cover >60%.,2,Evergreen Needleleaf Trees: dominated by evergreen conifer trees (>2m). Tree cover >10%.
+AU-Cow,CowBay,-16.23819,145.42716,2,Evergreen Broadleaf Forests: dominated by evergreen broadleaf and palmate trees (canopy >2m). Tree cover >60%.,2,Evergreen Needleleaf Trees: dominated by evergreen conifer trees (>2m). Tree cover >10%.
+AU-Whr,Whroo,-36.6732,145.0294,8,Woody Savannas: tree cover 30-60% (canopy >2m).,2,Evergreen Broadleaf Trees: dominated by evergreen broadleaf and palmate trees (>2m). Tree cover >10%.
+AU-Rob,RobsonCreek,-17.11747,145.63014,2,Evergreen Broadleaf Forests: dominated by evergreen broadleaf and palmate trees (canopy >2m). Tree cover >60%.,2,Evergreen Needleleaf Trees: dominated by evergreen conifer trees (>2m). Tree cover >10%.
+AU-Tum,Tumbarumba,-35.6566,148.15159,1,Evergreen Needleleaf Forests: dominated by evergreen conifer trees (canopy >2m). Tree cover >60%.,1,Evergreen Needleleaf Trees: dominated by evergreen conifer trees (>2m). Tree cover >10%.
+AU-Lox,Loxton,-34.47035,140.65512,10,Grasslands: dominated by herbaceous annuals (<2m).,6,not cultivated.
+AU-War,Warra,-43.09502,146.65452,2,Evergreen Broadleaf Forests: dominated by evergreen broadleaf and palmate trees (canopy >2m). Tree cover >60%.,2,Evergreen Needleleaf Trees: dominated by evergreen conifer trees (>2m). Tree cover >10%.
+AU-ASM,AliceSpringsMulga,-22.283,133.24899,6,Closed Shrublands: dominated by woody perennials (1-2m height) >60% cover.,5,Shrub: Shrub (1-2m) cover >10%.
+AU-TTE,TiTreeEast,-22.287,133.64,6,Closed Shrublands: dominated by woody perennials (1-2m height) >60% cover.,5,Shrub: Shrub (1-2m) cover >10%.
+AU-Gin,Gingin,-31.37635,115.71377,9,Savannas: tree cover 10-30% (canopy >2m).,1,Evergreen Needleleaf Trees: dominated by evergreen conifer trees (>2m). Tree cover >10%.
+AU-RDF,RedDirtMelonFarm,-14.56364,132.47757,10,Grasslands: dominated by herbaceous annuals (<2m).,6,not cultivated.

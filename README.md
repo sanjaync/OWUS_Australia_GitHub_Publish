@@ -1,6 +1,6 @@
 # Stochastic Soil Water Model (SSWM) and Eco-Evolutionary Optimality (EEO) Calibration across Australian Ecosystems
 
-This repository contains the complete codebase, Slurm configurations, processed calibration datasets, and manuscript generation pipelines for reproducing the study on vegetation water-use strategies across diverse Australian ecosystems.
+This repository contains the complete codebase, Slurm configurations, processed calibration datasets, and manuscript generation pipelines for reproducing the study on vegetation water-use strategie[...]
 
 ![Graphical Abstract](final_owus_abstact.png)
 
@@ -16,25 +16,33 @@ This repository contains the complete codebase, Slurm configurations, processed 
 
 ---
 
+## Supplementary Material
+
+**Paper Supplementary Files**: The supplementary material for this paper is located in a separate repository:
+- **Repository**: [https://github.com/sanjaync/paper_1_supply_files.git](https://github.com/sanjaync/paper_1_supply_files.git)
+- This repository contains additional supporting figures, tables, datasets, and documentation referenced in the manuscript.
+
+---
+
 ## 1. Project Overview
 
-This study explores the physiological mechanisms regulating vegetation water-use efficiency under varying soil moisture constraints using the parsimonious **Stochastic Soil Water Model (SSWM)** framework. Two major experimental configurations are implemented and compared:
+This study explores the physiological mechanisms regulating vegetation water-use efficiency under varying soil moisture constraints using the parsimonious **Stochastic Soil Water Model (SSWM)** fr[...]
 
 1. **Baseline Run**: Standard single-equation Priestley-Taylor (PT) Potential Evapotranspiration (PET) forcing, comparing:
    * *Empirical Best Fit (BF)*: MCMC calibration against observed soil moisture probability density functions (PDFs).
    * *Eco-Evolutionary Optimality (OPT)*: Theoretical calibration maximizing carbon-use efficiency ($\epsilon$).
-2. **Ensemble Run**: Multi-model consensus forcing (Top-5 Mean PET, ranked using Kling-Gupta Efficiency against the ASCE Penman-Monteith standard), exploring the "rescue-versus-overdrive" trade-offs of using multi-physics consensus constraints.
+2. **Ensemble Run**: Multi-model consensus forcing (Top-5 Mean PET, ranked using Kling-Gupta Efficiency against the ASCE Penman-Monteith standard), exploring the "rescue-versus-overdrive" trade-of[...]
 
 ### 1.1 Ensemble PET Formulation and Model Selection
 
-To assess the impact of structural forcing uncertainty, 18 potential evapotranspiration (PET) models spanning temperature-based, radiation-based, and combination physical equations were computed at daily resolutions. These models were implemented using the open-source python package `pyet` (version 1.2+).
+To assess the impact of structural forcing uncertainty, 18 potential evapotranspiration (PET) models spanning temperature-based, radiation-based, and combination physical equations were computed a[...]
 
 The selection of the consensus ensemble forcing proceeded as follows:
 
-* **Reference Baseline**: The ASCE Penman-Monteith (ASCE-PM) equation, requiring solar radiation, wind speed, relative humidity, and air temperature, was treated as the physical standard representing maximum boundary condition information.
-* **Evaluation Metrics**: Each of the 18 candidate PET methods (e.g. Hargreaves, Turc, Makkink, Abtew, Priestley-Taylor, Blaney-Criddle, etc.) was compared against ASCE-PM at daily steps for each site.
+* **Reference Baseline**: The ASCE Penman-Monteith (ASCE-PM) equation, requiring solar radiation, wind speed, relative humidity, and air temperature, was treated as the physical standard represent[...]
+* **Evaluation Metrics**: Each of the 18 candidate PET methods (e.g. Hargreaves, Turc, Makkink, Abtew, Priestley-Taylor, Blaney-Criddle, etc.) was compared against ASCE-PM at daily steps for each [...]
 * **Performance Ranking**: The Kling-Gupta Efficiency (KGE) score was computed for each candidate method to capture correlation, bias, and variability simultaneously.
-* **Top-5 Consensus Selection**: At each site, the 5 models achieving the highest KGE scores were identified. The daily arithmetic average of these Top-5 methods defines the **Ensemble Consensus PET** used to force the SSWM calibration.
+* **Top-5 Consensus Selection**: At each site, the 5 models achieving the highest KGE scores were identified. The daily arithmetic average of these Top-5 methods defines the **Ensemble Consensus P[...]
 
 ---
 
@@ -169,15 +177,15 @@ Because the raw forcing datasets, MCMC traces, and diagnostic plots are extremel
 
 ### Validation Data
 
-Leaf water potential data, pneumatic vulnerability curves, and sap velocity observations used to validate modeled hydraulic thresholds ($P_{x50}$ and $P_{g50}$) and water-use strategies are stored across these folders:
+Leaf water potential data, pneumatic vulnerability curves, and sap velocity observations used to validate modeled hydraulic thresholds ($P_{x50}$ and $P_{g50}$) and water-use strategies are store[...]
 
-* **Leaf Water Potential & Vulnerability Data (HPC Directory)**: `/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_ensemble_top5/FINAL_PAPER_BUNDLE_ENSEMBLE/02_Validation_Plots/validation_data/`
+* **Leaf Water Potential & Vulnerability Data (HPC Directory)**: `/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/OWUS_australia_ensemble_top5/FINAL_PAPER_BUNDLE_ENSEMBLE/02_Validation_Pl[...]
   * `Cow_Bay_Predawn_and_Midday_leaf_water_potential_data.csv`: Measured $\Psi$ dynamics for rainforest species.
   * `Cow_Bay__pneumatic_vulnerability_curve_data.csv`: Measured hydraulic vulnerability parameters.
   * `Robson_Creek_Predawn_and_Midday_leaf_water_potential_data.csv`: Wet sclerophyll forest validation metrics.
   * `Robson_Creek_pneumatic_vulnerability_curve_data.csv`: Pneumatic vulnerability validation parameters.
 * **Sapflux Australia Dataset (HPC Directory)**: `/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/Sapflux_australia/`
-  * Contains xlsx spreadsheets of continuous sap velocity measurements for Cow Bay and Robson Creek, corresponding soil water potentials, tree inventory details, TERN raw tropical rainforest hydraulics, and custom calibration/plotting scripts.
+  * Contains xlsx spreadsheets of continuous sap velocity measurements for Cow Bay and Robson Creek, corresponding soil water potentials, tree inventory details, TERN raw tropical rainforest hydr[...]
 * **OzFlux Footprint Climatology & Representativeness (HPC Directory)**: `/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/PyFluxPro/OzFlux-footprint/`
   * Contains site-by-site daily/monthly footprint netCDF datasets, Google Earth KMZ conversion tools, representativeness assessment scripts, and Slurm arrays configurations.
 * **Flux Tower Soil Depth Metadata & Placements (HPC Directory)**: `/home/sanjays/et97_scratch2/oldscratch/Ozflux_data_full/L6/soil_depth_plots/`
@@ -241,19 +249,19 @@ Using the provided processed calibration outputs in `data_info/`, you can reprod
 
 ## 6. Complete Project Archives (Zip Files)
 
-For offline access or full local execution, ten separate self-contained zip archives are provided under the `zip_archives/` folder. These files contain all intermediate build logs, full high-resolution figures, LaTeX sources, and local configurations:
+For offline access or full local execution, ten separate self-contained zip archives are provided under the `zip_archives/` folder. These files contain all intermediate build logs, full high-reso[...]
 
 * **Baseline Paper Bundle ([zip_archives/FINAL_PAPER_BUNDLE.zip](file:///home/sanjays/et97_scratch2/OWUS_Australia_GitHub_Publish/zip_archives/FINAL_PAPER_BUNDLE.zip))**:
-  * Contains the LaTeX manuscript files, bibliography database, tables, and the comprehensive 17-site diagnostic directories (prior vs. posterior densities, trace plots, soil moisture probability density functions).
+  * Contains the LaTeX manuscript files, bibliography database, tables, and the comprehensive 17-site diagnostic directories (prior vs. posterior densities, trace plots, soil moisture probability[...]
 * **Ensemble Paper Bundle ([zip_archives/FINAL_PAPER_BUNDLE_ENSEMBLE.zip](file:///home/sanjays/et97_scratch2/OWUS_Australia_GitHub_Publish/zip_archives/FINAL_PAPER_BUNDLE_ENSEMBLE.zip))**:
   * Contains the LaTeX files, BibTeX database, and stacked multi-panel diagnostic grids for the Top-5 Ensemble PET runs.
 * **ENSO Anomalies Study ([zip_archives/ENSO_experiment_updated.zip](file:///home/sanjays/et97_scratch2/OWUS_Australia_GitHub_Publish/zip_archives/ENSO_experiment_updated.zip))**:
-  * Contains the complete ENSO sub-study directory including site-specific calibrations comparing El Niño vs. La Niña parameterizations, dynamic plotting utilities, and the final summary report.
+  * Contains the complete ENSO sub-study directory including site-specific calibrations comparing El Niño vs. La Niña parameterizations, dynamic plotting utilities, and the final summary report[...]
 * **Sapflux Australia Dataset & Analysis ([zip_archives/Sapflux_australia.zip](file:///home/sanjays/et97_scratch2/OWUS_Australia_GitHub_Publish/zip_archives/Sapflux_australia.zip))**:
-  * Contains the raw and preprocessed sapflux spreadsheets, soil water potentials, inventory details, TERN validation data, and processing notebooks/scripts for the tropical rainforest site validation.
+  * Contains the raw and preprocessed sapflux spreadsheets, soil water potentials, inventory details, TERN validation data, and processing notebooks/scripts for the tropical rainforest site valid[...]
 * **Smart PET Ensemble Evaluations ([zip_archives/PET_Results_SmartEnsemble.zip](file:///home/sanjays/et97_scratch2/OWUS_Australia_GitHub_Publish/zip_archives/PET_Results_SmartEnsemble.zip))**:
-  * Contains potential evapotranspiration (PET) daily timeseries evaluations, formulation rankings (KGE, R2, RMSE, Bias) compared against Penman-Monteith ASCE, and site-by-site diagnostic subplots for all 41 sites.
-* **OzFlux Footprint Climatology & Representativeness ([zip_archives/OzFlux_Footprint_Analysis.zip](file:///home/sanjays/et97_scratch2/OWUS_Australia_GitHub_Publish/zip_archives/OzFlux_Footprint_Analysis.zip))**:
+  * Contains potential evapotranspiration (PET) daily timeseries evaluations, formulation rankings (KGE, R2, RMSE, Bias) compared against Penman-Monteith ASCE, and site-by-site diagnostic subplot[...]
+* **OzFlux Footprint Climatology & Representativeness ([zip_archives/OzFlux_Footprint_Analysis.zip](file:///home/sanjays/et97_scratch2/OWUS_Australia_GitHub_Publish/zip_archives/OzFlux_[...]
   * Contains footprint processing scripts, slurm queue scripts, GUI utilities, and site-by-site NetCDF footprint climatologies.
 * **PyFluxPro Annual Site Diagnostic Plots ([zip_archives/PyFluxPro_Plots.zip](file:///home/sanjays/et97_scratch2/OWUS_Australia_GitHub_Publish/zip_archives/PyFluxPro_Plots.zip))**:
   * Contains 357 annual site-level quality-control reports in PDF format generated via PyFluxPro.

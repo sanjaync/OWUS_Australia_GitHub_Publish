@@ -1,5 +1,5 @@
-# Exclude the large zip archives
-zip_archives/
+# Exclude only the 103 GB Footprint Analysis zip file
+zip_archives/OzFlux_Footprint_Analysis.zip
 
 # Exclude Python cache and checkpoint files
 __pycache__/

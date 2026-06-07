@@ -2,7 +2,7 @@
 
 This repository contains the complete codebase, Slurm configurations, processed calibration datasets, and manuscript generation pipelines for reproducing the study on vegetation water-use strategies.
 
-![Graphical Abstract](final_owus_abstract_paper1.png)
+![Graphical Abstract](paper1_abstract_chatgpt.png)
 
 ## License
 
@@ -65,7 +65,7 @@ OWUS_Australia_GitHub_Publish/
 ├── README.md                  # This documentation file
 ├── LICENSE                    # MIT License file
 ├── OWUS_Workflow_Explained.md # Step-by-step mathematical & coding workflow guide
-├── final_owus_abstract_paper1.png    # Graphical abstract summary image
+├── paper1_abstract_chatgpt.png    # Graphical abstract summary image
 ├── code/                      # Python core modeling, analysis, and generation scripts
 │   ├── sswm.py                # Stochastic Soil Water Model physics engine
 │   ├── param_sm_pdf.py        # Soil moisture PDF parameter estimation routines
